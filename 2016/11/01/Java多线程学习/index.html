@@ -161,22 +161,21 @@
         <!-- Post Content -->
         <p>进程：正在执行的程序，有一个执行顺序，顺序是一个执行路径， 或者叫控制单元<br>线程：进程中独立的控制单元，至少有一个<br>JAVA vm 启动时有一个进程java.exe<br>至少有一个线程存在main函数中叫主线程。</p>
 <blockquote>
-<p>jvm 启动不只一个线程，还有负责垃圾回收处理机制的线程。<br><a id="more"></a></p>
-<p>##java.lang.Thread##</p>
+<p>jvm 启动不只一个线程，还有负责垃圾回收处理机制的线程。</p>
 </blockquote>
-<ol>
+<a id="more"></a>
+<h2 id="java-lang-Thread"><a href="#java-lang-Thread" class="headerlink" title="java.lang.Thread"></a>java.lang.Thread</h2><ol>
 <li>创建线程第一种方式是继承Thread</li>
 <li>并复写run()方法（目的是将自定义的代码存储在run()方法中）</li>
 <li>调用改线程的start()方法（因为对象.run()仅仅是调用方法，线程创建了，并没有运行）</li>
 </ol>
-<p>##多线程具有随机性##<br>多个线程获取cpu的执行权，每一个时间只能一个程序占用cpu（多核除外）</p>
+<h2 id="多线程具有随机性"><a href="#多线程具有随机性" class="headerlink" title="多线程具有随机性"></a>多线程具有随机性</h2><p>多个线程获取cpu的执行权，每一个时间只能一个程序占用cpu（多核除外）</p>
 <ul>
 <li>几种状态sleep(),wait(),notify(),stop(),和一个特殊状态：阻塞–<em>具备运行资格，但没有执行权</em></li>
 <li><img src="http://i.imgur.com/je9JJLi.png" alt=""></li>
 </ul>
-<p>##线程名称##<br>默认名称为Thread-编号<br>.getName()获得线程名称，.setName()设置线程名称，Thread.currentThread()获得当前线程</p>
-<p>##java.lang.Runnable接口##</p>
-<ol>
+<h2 id="线程名称"><a href="#线程名称" class="headerlink" title="线程名称"></a>线程名称</h2><p>默认名称为Thread-编号<br>.getName()获得线程名称，.setName()设置线程名称，Thread.currentThread()获得当前线程</p>
+<h2 id="java-lang-Runnable接口"><a href="#java-lang-Runnable接口" class="headerlink" title="java.lang.Runnable接口"></a>java.lang.Runnable接口</h2><ol>
 <li>创建线程第二种方式 实现Runnable方法</li>
 <li>覆盖Runnable接口的run方法</li>
 <li>通过Thread类建立线程对象</li>
