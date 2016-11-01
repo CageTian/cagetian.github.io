@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2016/10/31/MarkdownPad/</loc>
+    <loc>http://yoursite.com/2016/11/01/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0/</loc>
     
-    <lastmod>2016-10-31T12:17:20.114Z</lastmod>
+    <lastmod>2016-11-01T06:13:21.282Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2016/10/30/hello-world/</loc>
     
-    <lastmod>2016-10-30T14:34:22.454Z</lastmod>
+    <lastmod>2016-11-01T06:13:06.259Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/10/31/MarkdownPad/</loc>
+    
+    <lastmod>2016-11-01T06:13:06.259Z</lastmod>
     
   </url>
   
