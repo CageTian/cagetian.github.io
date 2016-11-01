@@ -160,46 +160,9 @@
         <div class="content">
             <p>进程：正在执行的程序，有一个执行顺序，顺序是一个执行路径， 或者叫控制单元<br>线程：进程中独立的控制单元，至少有一个<br>JAVA vm 启动时有一个进程java.exe<br>至少有一个线程存在main函数中叫主线程。</p>
 <blockquote>
-<p>jvm 启动不只一个线程，还有负责垃圾回收处理机制的线程。</p>
-</blockquote>
-<p>##java.lang.Thread##</p>
-<ol>
-<li>创建线程第一种方式是继承Thread</li>
-<li>并复写run()方法（目的是将自定义的代码存储在run()方法中）</li>
-<li>调用改线程的start()方法（因为对象.run()仅仅是调用方法，线程创建了，并没有运行）</li>
-</ol>
-<p>##多线程具有随机性##<br>多个线程获取cpu的执行权，每一个时间只能一个程序占用cpu（多核除外）</p>
-<ul>
-<li>几种状态sleep(),wait(),notify(),stop(),和一个特殊状态：阻塞–<em>具备运行资格，但没有执行权</em></li>
-<li><img src="http://i.imgur.com/je9JJLi.png" alt=""></li>
-</ul>
-<p>##线程名称##<br>默认名称为Thread-编号<br>.getName()获得线程名称，.setName()设置线程名称，Thread.currentThread()获得当前线程</p>
-<p>##java.lang.Runnable接口##</p>
-<ol>
-<li>创建线程第二种方式 实现Runnable方法</li>
-<li>覆盖Runnable接口的run方法</li>
-<li>通过Thread类建立线程对象</li>
-<li>将Runnable接口的子类对象作为实际参数传递给Thread类的构造函数</li>
-<li>调用Thread类的static方法开启线程并调用Runnable接口子类的run方法</li>
-</ol>
-<blockquote>
-<p>实现相比第一种方式的好处： Runnable避免了单继承的局限性，在定义线程时，尽量使用接口实现的方式。<br>区别：继承线程代码存放在Thread子类的run方法中<br>实现Runnable线程代码存放在接口子类的run方法中</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ticket</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span></div><div class="line">&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="comment">//do something</span></div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></div><div class="line">	&#123;</div><div class="line">		Ticket t= <span class="keyword">new</span> Ticket();</div><div class="line">		Thread t1=<span class="keyword">new</span> Thread(t);</div><div class="line">		Thread t2=<span class="keyword">new</span> Thread(t);</div><div class="line">		t1.start();</div><div class="line">		t1.start();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="多线程安全问题"><a href="#多线程安全问题" class="headerlink" title="多线程安全问题"></a>多线程安全问题</h2><p>–1.<em>使用同步代码块</em><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">synchronized</span>(对象)&#123;</div><div class="line">	<span class="comment">//需要被同步的代码块</span></div><div class="line">	<span class="comment">//只能有一个线程进入，执行完之后才能进下一个进程</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>好处：解决了多线程的安全问题<br>弊端：多个线程都需要判断锁，较为消耗资源</p>
-</blockquote>
-<p>–2.<em>同步函数</em><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="comment">//do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<ul>
-<li>同步函数使用的锁是哪一个？<br>–<em>函数需要被对象调用，那函数都有一个所属对象的引用，就是this。</em></li>
-<li>如果同步函数被静态修饰后用的锁不是this，尤为静态方法中没有this<ul>
-<li>静态进内存时，内存中没有本类对象，但是一定有该类对应的字节码文件对象。类名.class 该类的类型是Class(静态同步方法)<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">synchronized</span>(类名.class)</div><div class="line">&#123;</div><div class="line">	<span class="comment">//需要被同步的代码块</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="comment">//do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-
+<p>jvm 启动不只一个线程，还有负责垃圾回收处理机制的线程。<br>
         </div>
+        <a href="/2016/11/01/Java多线程学习/" class="read-more">Read More</a>
     
 
 </div>
@@ -282,17 +245,11 @@
 
     
         <div class="content">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+            <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a><br>
         </div>
+        <a href="/2016/10/30/hello-world/" class="read-more">Read More</a>
     
 
 </div>
