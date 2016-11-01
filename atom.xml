@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-01T08:30:08.636Z</updated>
+  <updated>2016-11-01T08:32:09.405Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://yoursite.com/2016/11/01/JAVA%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2016/11/01/JAVA单例设计模式/</id>
     <published>2016-11-01T06:47:51.744Z</published>
-    <updated>2016-11-01T08:30:08.636Z</updated>
+    <updated>2016-11-01T08:32:09.405Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="JAVA单例设计模式"><a href="#JAVA单例设计模式" class="headerlink" title="JAVA单例设计模式"></a>JAVA单例设计模式</h1><blockquote>
+    <content type="html"><![CDATA[<blockquote>
 <p>单例设计模式 懒汉式/饿汉式</p>
 </blockquote>
 <a id="more"></a>
@@ -32,7 +32,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;JAVA单例设计模式&quot;&gt;&lt;a href=&quot;#JAVA单例设计模式&quot; class=&quot;headerlink&quot; title=&quot;JAVA单例设计模式&quot;&gt;&lt;/a&gt;JAVA单例设计模式&lt;/h1&gt;&lt;blockquote&gt;
+      &lt;blockquote&gt;
 &lt;p&gt;单例设计模式 懒汉式/饿汉式&lt;/p&gt;
 &lt;/blockquote&gt;
     
