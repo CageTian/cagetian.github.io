@@ -50,7 +50,7 @@
     <link href="http://yoursite.com/2016/11/01/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0/"/>
     <id>http://yoursite.com/2016/11/01/Java多线程学习/</id>
     <published>2016-11-01T06:13:21.281Z</published>
-    <updated>2016-11-03T07:44:35.354Z</updated>
+    <updated>2016-11-03T07:46:27.013Z</updated>
     
     <content type="html"><![CDATA[<p>进程：正在执行的程序，有一个执行顺序，顺序是一个执行路径， 或者叫控制单元<br>线程：进程中独立的控制单元，至少有一个<br>JAVA vm 启动时有一个进程java.exe<br>至少有一个线程存在main函数中叫主线程。</p>
 <blockquote>
