@@ -160,6 +160,7 @@
 
         <!-- Post Content -->
         <p>在这里主要说一些String类的细节，易忽略的点，以及面试题</p>
+<a id="more"></a>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String s1=<span class="string">"abc;//s1是一个类类型变量，“abc"</span>是一个对象。</div><div class="line">s1=<span class="string">"ab"</span>;<span class="comment">//新建立了一个对象，s1指向这个对象，原来的"abc"还在堆内存中。</span></div><div class="line">String s2=<span class="keyword">new</span> String(<span class="string">"abc"</span>);<span class="comment">//不使用！建立了两个对象</span></div><div class="line">String s3=<span class="string">"abc"</span>;<span class="comment">//与s1共用一个对象，或者说s1,s3指向同一对象，不会再开辟空间。</span></div></pre></td></tr></table></figure>
 <blockquote>
 <p>字符串的最大特点：一旦被初始化就不可以改变。<br>字符串比较使用.equals()，不使用c语言的==。</p>
@@ -212,19 +213,19 @@
         <ul>
             
             <li>
-                <a class="footer-post" href="/2016/11/08/树/">Untitled</a>
-            </li>
-            
-            <li>
                 <a class="footer-post" href="/2016/11/06/集合/">Java集合框架的学习</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/04/java基础知识细节深入/">Untitled</a>
+                <a class="footer-post" href="/2016/11/03/String类深入理解/">Java String类深入理解</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/03/String类深入理解/">Java String类深入理解</a>
+                <a class="footer-post" href="/2016/11/01/Java单例设计模式/">Java单例设计模式</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/01/Java多线程学习/">Java多线程的学习</a>
             </li>
             
         </ul>

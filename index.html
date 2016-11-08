@@ -139,38 +139,6 @@
 
     <div class="post-header index">
         <h1 class="title">
-            <a href="/2016/11/08/树/">
-                Untitled
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-11-08</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><h3 id="树的基本性质"><a href="#树的基本性质" class="headerlink" title="树的基本性质"></a>树的基本性质</h3><ol>
-<li>树中节点总数=所有节点的度数+1;</li>
-<li>都为m的树，其抵i层上至多有m^i个节点（根节点为第0层，i&gt;=0）（二叉树有2^m个节点）;</li>
-<li>高度为h(深度为h-1)度为m的数至多有(m^h-1)/(m-1)个节点（二叉树有2^h-1个节点）；</li>
-<li>具有n个节点的度为m的数，其最小高度为[logm(n(m-1)+1)],([x]代表大于等于x的最小整数)（n个节点二叉树最小高度为[log2(n+1)]）;</li>
-</ol>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
             <a href="/2016/11/06/集合/">
                 Java集合框架的学习
             </a>
@@ -196,114 +164,8 @@
 <blockquote>
 <p>因为每一个容器对数据的存储方式都有不同。这个存储方式称之为：数据结构。</p>
 </blockquote>
-<ul>
-<li>集合类的由来：</li>
-</ul>
-<blockquote>
-<p>对象用于封装特有数据，对象多了需要存储，如果对象的个数不确定。就使用集合容器进行存储。</p>
-</blockquote>
-<ul>
-<li>集合特点：</li>
-</ul>
-<blockquote>
-<ol>
-<li>用于存储对象的容器。</li>
-<li>集合的长度是可变的。</li>
-<li>集合中不可以存储基本数据类型值。 </li>
-</ol>
-</blockquote>
-<p>集合容器因为内部的数据结构不同，有多种具体容器。<br>不断的向上抽取，就形成了集合框架。<br><img src="http://i.imgur.com/WhI1dni.png" alt=""></p>
-<h2 id="接口-Collection"><a href="#接口-Collection" class="headerlink" title="接口 Collection"></a>接口 Collection<e></e></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">retainAll</span><span class="params">(Collection&lt;?&gt; c)</span> <span class="comment">//取交集</span></span></div><div class="line"><span class="keyword">boolean</span> <span class="title">removeAll</span><span class="params">(Collection&lt;?&gt; c)</span>  <span class="comment">//删除与c里面元素相同的元素</span></div><div class="line"><span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(Collection&lt;? extends E&gt; c)</span> <span class="comment">//取并集</span></div><div class="line"><span class="keyword">boolean</span> <span class="title">containsAll</span><span class="params">(Collection&lt;?&gt; c)</span> <span class="comment">//如果此 collection 包含指定 collection 中的所有元素，则返回 true。</span></div></pre></td></tr></table></figure>
-<h3 id="Iterator-iterator"><a href="#Iterator-iterator" class="headerlink" title="Iterator iterator()"></a>Iterator<e> iterator()</e></h3><p>返回在此 collection 的元素上进行迭代的迭代器。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> <span class="comment">//如果仍有元素可以迭代，则返回 true。 </span></span></div><div class="line">E <span class="title">next</span><span class="params">()</span><span class="comment">//返回迭代的下一个元素。 </span></div><div class="line"><span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span><span class="comment">// 从迭代器指向的 collection 中移除迭代器返回的最后一个元素（可选操作）。 </span></div><div class="line"><span class="title">for</span><span class="params">(Iterator it=对象.iterator()</span>;it.hasNext();)</div><div class="line">	it.next();<span class="comment">//do something</span></div></pre></td></tr></table></figure></p>
-<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p>元素是有序的可以重复，因为有索引</p>
-<ul>
-<li>List特有方法（凡是可以操作角标的方法都是List特有方法）</li>
-<li>ListIterator是Iterator的子接口。在迭代时，不可以通过集合对象的方法操作集合中的元素，因为会发生并发异常。所以在迭代市只能用迭代器方法操作元素，但是Iterator方法是有限的，如果想要添加修改等操作需要使用子接口，ListIterator</li>
-</ul>
-<blockquote>
-<p>注意不能用迭代器的同时使用集合的方法进行操作（并发修改），否则会抛出异常ConcurrentModificationException</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">ListIterator方法：</div><div class="line"> <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(E e)</span> </span></div><div class="line">          将指定的元素插入列表（可选操作）。 </div><div class="line"> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </div><div class="line">          以正向遍历列表时，如果列表迭代器有多个元素，则返回 <span class="keyword">true</span>（换句话说，如果 next 返回一个元素而不是抛出异常，则返回 <span class="keyword">true</span>）。 </div><div class="line"> <span class="keyword">boolean</span> <span class="title">hasPrevious</span><span class="params">()</span> </div><div class="line">          如果以逆向遍历列表，列表迭代器有多个元素，则返回 <span class="keyword">true</span>。 </div><div class="line"> E <span class="title">next</span><span class="params">()</span> </div><div class="line">          返回列表中的下一个元素。 </div><div class="line"> <span class="keyword">int</span> <span class="title">nextIndex</span><span class="params">()</span> </div><div class="line">          返回对 next 的后续调用所返回元素的索引。 </div><div class="line"> E <span class="title">previous</span><span class="params">()</span> </div><div class="line">          返回列表中的前一个元素。 </div><div class="line"> <span class="keyword">int</span> <span class="title">previousIndex</span><span class="params">()</span> </div><div class="line">          返回对 previous 的后续调用所返回元素的索引。 </div><div class="line"> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </div><div class="line">          从列表中移除由 next 或 previous 返回的最后一个元素（可选操作）。 </div><div class="line"> <span class="keyword">void</span> <span class="title">set</span><span class="params">(E e)</span> </div><div class="line">          用指定元素替换 next 或 previous 返回的最后一个元素（可选操作）。</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span><span class="comment">//在列表的指定位置插入指定元素（可选操作）。 </span></span></div><div class="line"><span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(Collection&lt;? extends E&gt; c)</span><span class="comment">//添加指定 collection 中的所有元素到此列表的结尾，顺序是指定 collection 的迭代器返回这些元素的顺序</span></div><div class="line">ListIterator&lt;E&gt; <span class="title">listIterator</span><span class="params">()</span><span class="comment">//返回此列表元素的列表迭代器（按适当顺序）。 </span></div><div class="line">List&lt;E&gt; <span class="title">subList</span><span class="params">(<span class="keyword">int</span> fromIndex, <span class="keyword">int</span> toIndex)</span><span class="comment">//返回列表中指定的 fromIndex（包括 ）和 toIndex（不包括）之间的部分视图。</span></div><div class="line">E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </div><div class="line">E <span class="title">set</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </div><div class="line">E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span></div></pre></td></tr></table></figure>
-<h3 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h3><p>内部是数组数据结构，是同步的。增删，查询都很慢！<br>1.2版本之前使用（当时没有集合框架）较多后被ArrayList替代<br><em>枚举就是Vector特有的取出方式，枚举和迭代器很像，因为枚举名称方法较长所以被迭代器取代了</em></p>
-<h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><p>内部是数组数据结构，是不同步（异步）的。替代了Vector。查询的速度快。<br>1.2版本之后出现替代了Vector，默认构造元素长度是10，超出后按50%延长（Vector是100%）。<br>比较的时候需要注意equals方法的重写。</p>
-<h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3><p>内部是链表数据结构，是不同步的。增删元素的速度很快。</p>
-<ul>
-<li>特有方法</li>
-<li>1.6版本以后的方法<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">offer</span><span class="params">(E e)</span> </span></div><div class="line">         将指定元素添加到此列表的末尾（最后一个元素）。 </div><div class="line"><span class="keyword">boolean</span> <span class="title">offerFirst</span><span class="params">(E e)</span> </div><div class="line">         在此列表的开头插入指定的元素。 </div><div class="line"><span class="keyword">boolean</span> <span class="title">offerLast</span><span class="params">(E e)</span> </div><div class="line">         在此列表末尾插入指定的元素。 </div><div class="line">E <span class="title">peek</span><span class="params">()</span> </div><div class="line">         获取但不移除此列表的头（第一个元素）。 </div><div class="line">E <span class="title">peekFirst</span><span class="params">()</span> </div><div class="line">         获取但不移除此列表的第一个元素；如果此列表为空，则返回 <span class="keyword">null</span>。 </div><div class="line">E <span class="title">peekLast</span><span class="params">()</span> </div><div class="line">         获取但不移除此列表的最后一个元素；如果此列表为空，则返回 <span class="keyword">null</span>。 </div><div class="line">E <span class="title">poll</span><span class="params">()</span> </div><div class="line">         获取并移除此列表的头（第一个元素） </div><div class="line">E <span class="title">pollFirst</span><span class="params">()</span> </div><div class="line">         获取并移除此列表的第一个元素；如果此列表为空，则返回 <span class="keyword">null</span>。 </div><div class="line">E <span class="title">pollLast</span><span class="params">()</span> </div><div class="line">         获取并移除此列表的最后一个元素；如果此列表为空，则返回 <span class="keyword">null</span>。</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>元素是无序的，不可以重复<br>Set集合的功能和Collection功能是一致的</p>
-<h3 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h3><p>数据结构是哈希表，线程是非同步的<br>哈希表储存方式：先判断地址值（hashCode）是否一样，不一样就存入，一样的话继续判断是否同一个对象（equals方法），不是同一对象的话会在同地址下顺延。</p>
-<blockquote>
-<p>哈希表确定元素是否相同</p>
-<ol>
-<li>判断的是两个元素的哈希值是否相同。如果相同，在判断两个对象的内容是否相同。</li>
-<li>判断哈希值相同，其实判断的是对象的hashCode的方法。判断内容相同，用的是equals方法。<br>注意：如果哈希值不同，是不需要判断equals。<br><img src="http://i.imgur.com/OnOQkYw.png" alt=""></li>
-</ol>
-</blockquote>
-<h3 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h3><p>可以对Set集合中的元素进行排序<br>自定义数据类型时需要重写Compareble里的compareTo函数</p>
-<blockquote>
-<p> int compareTo(T o) //比较此对象与指定对象的顺序。 </p>
-</blockquote>
-<p>底层数据结构是二叉树，保证元素唯一性的依据compareTo方法return0.<br>treeSet排序的第一种方式：让让元素自身具备比较性，元素需要实现CompareTo方法。这种顺序叫做自然顺序也叫默认顺序<br>TreeSet排序的第二种方式：让集合自身具备比较功能，定义一个类实现Comparator接口，覆盖compare方法。将该类对象作为参数传递给TreeSet集合的构造函数。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Iterator;</div><div class="line"><span class="keyword">import</span> java.util.TreeSet;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeSetTest</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComparatorByLength</span> <span class="keyword">implements</span> <span class="title">Comparator</span> </span>&#123;</div><div class="line">	</div><div class="line">		<span class="meta">@Override</span></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Object o1, Object o2)</span> </span>&#123;</div><div class="line">			</div><div class="line">			String s1 = (String)o1;</div><div class="line">			String s2 = (String)o2;</div><div class="line">			</div><div class="line">			<span class="keyword">int</span> temp = s1.length()-s2.length();</div><div class="line">			</div><div class="line">			<span class="keyword">return</span> temp==<span class="number">0</span>? s1.compareTo(s2): temp;</div><div class="line">			<span class="comment">//基础类型都有compareTo方法</span></div><div class="line">		&#125;</div><div class="line">	</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"></div><div class="line">		TreeSet ts = <span class="keyword">new</span> TreeSet(<span class="keyword">new</span> ComparatorByLength());</div><div class="line"></div><div class="line">		ts.add(<span class="string">"aaaaa"</span>);</div><div class="line">		ts.add(<span class="string">"zz"</span>);</div><div class="line">		ts.add(<span class="string">"nbaq"</span>);</div><div class="line">		ts.add(<span class="string">"cba"</span>);</div><div class="line">		ts.add(<span class="string">"abc"</span>);</div><div class="line">		</div><div class="line">		Iterator it = ts.iterator();</div><div class="line">		</div><div class="line">		<span class="keyword">while</span>(it.hasNext())&#123;</div><div class="line">			System.out.println(it.next());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
         </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/11/04/java基础知识细节深入/">
-                Untitled
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-11-04</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h1 id="java基础知识细节深入（及面试题）"><a href="#java基础知识细节深入（及面试题）" class="headerlink" title="java基础知识细节深入（及面试题）"></a>java基础知识细节深入（及面试题）</h1><h2 id="java内存结构"><a href="#java内存结构" class="headerlink" title="java内存结构"></a>java内存结构</h2><h2 id="基础易忽略点"><a href="#基础易忽略点" class="headerlink" title="基础易忽略点"></a>基础易忽略点</h2><h3 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3><h2 id="java重点关键字（this-final-static）"><a href="#java重点关键字（this-final-static）" class="headerlink" title="java重点关键字（this,final,static）"></a>java重点关键字（this,final,static）</h2><h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><h3 id="final"><a href="#final" class="headerlink" title="final"></a>final</h3><h3 id="static"><a href="#static" class="headerlink" title="static"></a>static</h3><h3 id="private-protected-默认"><a href="#private-protected-默认" class="headerlink" title="private\protected\默认"></a>private\protected\默认</h3><h2 id="类与继承"><a href="#类与继承" class="headerlink" title="类与继承"></a>类与继承</h2><h3 id="匿名类与匿名对象"><a href="#匿名类与匿名对象" class="headerlink" title="匿名类与匿名对象"></a>匿名类与匿名对象</h3><h3 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h3><h2 id="java异常及处理"><a href="#java异常及处理" class="headerlink" title="java异常及处理"></a>java异常及处理</h2><h2 id="java-DOS常用命令"><a href="#java-DOS常用命令" class="headerlink" title="java DOS常用命令"></a>java DOS常用命令</h2><h2 id="java接口和抽象类"><a href="#java接口和抽象类" class="headerlink" title="java接口和抽象类"></a>java接口和抽象类</h2><h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><h3 id="包装类"><a href="#包装类" class="headerlink" title="包装类"></a>包装类</h3><p>Integer,Long,Short,Float等便是int long short等基本类型的包装类，里面封装了很多常用静态方法，最大最小值，与其他类型转换，进制转换等。这里重点强调1.5出现后以下几点：</p>
-<ol>
-<li>Integer a=new Integer(4)可以用Integer a=4代替//自动装箱简化书写</li>
-<li>a=a+2//Integer a可以直接运算（a.intValue()），进行自动拆箱，变成int和2运算再将和进行装箱赋值给x</li>
-<li>当数值在byte范围内容，对于1.5以后如果该数据已经存在，不会再开辟新空间</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Integer m=<span class="number">127</span>;</div><div class="line">Integer n=<span class="number">127</span>;</div><div class="line">m==n<span class="comment">//true</span></div><div class="line">Integer a=<span class="number">128</span>;</div><div class="line">Integer b=<span class="number">128</span>;</div><div class="line">a==b<span class="comment">//false</span></div></pre></td></tr></table></figure>
-<h2 id="java多态"><a href="#java多态" class="headerlink" title="java多态"></a>java多态</h2><p>升级三个因素：</p>
-<ol>
-<li>提高效率</li>
-<li>提高安全性</li>
-<li>简化书写</li>
-<li>&amp;&amp;（如果左边为假右不运算）效率比&amp;（两边都运算）高（||和|也一个样）</li>
-<li>for(;;;){}//for的最简单无限循环</li>
-<li>程序计数器：<br>可以看做是当前所执行字节码的行号指示器。通常是改变计数器字节码的值来抉择下一步索要执行的代码，程序员不直接控制。</li>
-</ol>
-<p>寄存器：<br>在程序中我们无法直接控制，由编译器管理。</p>
-<p>栈区：<br>1，每个线程包含一个栈区，栈中只保存基础数据类型的对象和自定义的对象的引用以及局部变量。</p>
-<p>2，每个栈中的数据都是私有的，其他栈不能访问。</p>
-<p>3，当局部数据用完时，所占内存空间会自动释放。<br>JVM栈一个最大的用处是为执行 java方法服务的，每一个方法被执行的时候都会同时创建一个栈帧用于存储局部变量表，操作栈，动态链接，方法出口等信息。<br>每一个方法从调用直至执行完成的过程都对应着一个栈帧在虚拟机中从入栈到出栈的过程。<br>栈的优势在于存取速度比较快，仅次于寄存器。缺点是存储在栈中的数据的大小和生存周期是确定的，缺乏灵活性。</p>
-<p>堆区：<br>1，通过new建立的数组和对象都存储在堆中。</p>
-<p>2，每一个对象都有相应的内存地址值。</p>
-<p>3，对象中的变量都有默认初始化值。</p>
-<p>4，数组和对象在没有引用变量指向它的时候，才变成垃圾，不能再被使用，但是仍然占着内存，在随后的一个不确定的时间被垃圾回收器释放掉。</p>
-<p>另外要明确的是每一个Java应用都唯一对应一个JVM实例，每一个实例唯一对应一个堆。在java堆中还必须包含能查找到对象类型数据（如对象类型，父类，实现的接口，方法等）的地址信息，<br>这些类型数据（优先于对象存在）都存储在方法区中。<br>堆的优势在于可以动态地分配内存的大小，生存周期也不必事先告诉编译器，因为它是运行时动态地分配内存的，并用垃圾回收机制回收那些不用的数据。缺点是存取速度比较慢。</p>
-<p>方法区:<br>方法区本身又分为以下几个区域：<br>1.静态数据区，存放静态数据的地方</p>
-<p>2.常量区：就是下面要介绍的常量池。</p>
-<p>3.代码区：存放方法代码的区域<br>总之，方法区是JVM在装载类文件时，用于存储类型信息的(类的描述信息)地方，是一片给各个线程共享的内存区域。</p>
-<p>常量池：<br>常量池是Class文件结构中与其他项目关联最多的数据类型，它本身是方法区中的一个数据结构。在方法区中，每个类型都对应一个常量池，<br>常量池中存储了诸如文字字符串、final变量值、类名和方法名常量。JVM把常量池组织为入口列表的形式，可通过索引来访问常量池中的各个入口，<br>并用入口标识来表示该常量池存储的数据类型。常量池在编译期间就被确定，并被保存在已编译的.class文件中的一些数据，一般分为两大类，字面量和引用量。<br>字面量入全面提到的文本字符串，final变量等。类名和方法名属于引用量。<br>引用量最常见的一种用法是在调用方法的时候，根据方法名找到方法的引用，并以此定位到函数体进进行函数代码的执行。<br>引用量：<br>1，类和接口的权限定名。<br>2，字段的名称和描述符。<br>3，方法的名称和描述符。</p>
-
-        </div>
+        <a href="/2016/11/06/集合/" class="read-more">Read More</a>
     
 
 </div>
@@ -333,19 +195,8 @@
     
         <div class="content">
             <p>在这里主要说一些String类的细节，易忽略的点，以及面试题</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String s1=<span class="string">"abc;//s1是一个类类型变量，“abc"</span>是一个对象。</div><div class="line">s1=<span class="string">"ab"</span>;<span class="comment">//新建立了一个对象，s1指向这个对象，原来的"abc"还在堆内存中。</span></div><div class="line">String s2=<span class="keyword">new</span> String(<span class="string">"abc"</span>);<span class="comment">//不使用！建立了两个对象</span></div><div class="line">String s3=<span class="string">"abc"</span>;<span class="comment">//与s1共用一个对象，或者说s1,s3指向同一对象，不会再开辟空间。</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>字符串的最大特点：一旦被初始化就不可以改变。<br>字符串比较使用.equals()，不使用c语言的==。</p>
-</blockquote>
-<h2 id="用StringBuffer对字符串进行增删改查"><a href="#用StringBuffer对字符串进行增删改查" class="headerlink" title="用StringBuffer对字符串进行增删改查"></a>用StringBuffer对字符串进行增删改查</h2><h3 id="StringBuffer特点"><a href="#StringBuffer特点" class="headerlink" title="StringBuffer特点"></a>StringBuffer特点</h3><ol>
-<li>长度是可变化的。</li>
-<li>可以字节操作多个数据类型、</li>
-<li>最终会通过toString方法变成字符串</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function">StringBuffer <span class="title">append</span><span class="params">()</span><span class="comment">//后面追加</span></span></div><div class="line">StringBuffer <span class="title">delete</span><span class="params">(<span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </div><div class="line">StringBuffer <span class="title">deleteCharAt</span><span class="params">(<span class="keyword">int</span> index)</span><span class="comment">//删除某个字符</span></div><div class="line">StringBuffer <span class="title">insert</span><span class="params">(<span class="keyword">int</span> offset, <span class="keyword">char</span> c)</span><span class="comment">//第二个参数有各种基础类型重载</span></div><div class="line"><span class="keyword">void</span> <span class="title">setCharAt</span><span class="params">(<span class="keyword">int</span> index, <span class="keyword">char</span> ch)</span><span class="comment">//修改某个字符</span></div><div class="line">StringBuffer <span class="title">reverse</span><span class="params">()</span><span class="comment">//反转</span></div><div class="line">StringBuffer <span class="title">replace</span><span class="params">(<span class="keyword">int</span> start, <span class="keyword">int</span> end, String str)</span><span class="comment">//替换</span></div><div class="line"><span class="keyword">void</span> <span class="title">trimToSize</span><span class="params">()</span> <span class="comment">//尝试减少用于字符序列的存储空间。</span></div></pre></td></tr></table></figure>
-<h2 id="使用StringBuilder代替StringBuffer"><a href="#使用StringBuilder代替StringBuffer" class="headerlink" title="使用StringBuilder代替StringBuffer"></a>使用StringBuilder代替StringBuffer</h2><p>在SDK1.5后出现了StringBuilder类（），使用方法和StringBuffer相同，开发时单线程使用StringBuilder，多线程使用StringBuffer提高开发效率。</p>
-
         </div>
+        <a href="/2016/11/03/String类深入理解/" class="read-more">Read More</a>
     
 
 </div>
@@ -355,8 +206,8 @@
 
     <div class="post-header index">
         <h1 class="title">
-            <a href="/2016/11/01/JAVA单例设计模式/">
-                JAVA单例设计模式
+            <a href="/2016/11/01/Java单例设计模式/">
+                Java单例设计模式
             </a>
         </h1>
         <div class="post-info">
@@ -378,7 +229,7 @@
 <p>单例设计模式 懒汉式/饿汉式</p>
 </blockquote>
         </div>
-        <a href="/2016/11/01/JAVA单例设计模式/" class="read-more">Read More</a>
+        <a href="/2016/11/01/Java单例设计模式/" class="read-more">Read More</a>
     
 
 </div>
@@ -512,19 +363,19 @@
         <ul>
             
             <li>
-                <a class="footer-post" href="/2016/11/08/树/">Untitled</a>
-            </li>
-            
-            <li>
                 <a class="footer-post" href="/2016/11/06/集合/">Java集合框架的学习</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/04/java基础知识细节深入/">Untitled</a>
+                <a class="footer-post" href="/2016/11/03/String类深入理解/">Java String类深入理解</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/03/String类深入理解/">Java String类深入理解</a>
+                <a class="footer-post" href="/2016/11/01/Java单例设计模式/">Java单例设计模式</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/01/Java多线程学习/">Java多线程的学习</a>
             </li>
             
         </ul>

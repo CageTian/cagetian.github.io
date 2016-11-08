@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-08T08:37:52.787Z</updated>
+  <updated>2016-11-08T14:29:36.946Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,35 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2016/11/08/%E6%A0%91/"/>
-    <id>http://yoursite.com/2016/11/08/树/</id>
-    <published>2016-11-08T08:37:52.786Z</published>
-    <updated>2016-11-08T08:37:52.787Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><h3 id="树的基本性质"><a href="#树的基本性质" class="headerlink" title="树的基本性质"></a>树的基本性质</h3><ol>
-<li>树中节点总数=所有节点的度数+1;</li>
-<li>都为m的树，其抵i层上至多有m^i个节点（根节点为第0层，i&gt;=0）（二叉树有2^m个节点）;</li>
-<li>高度为h(深度为h-1)度为m的数至多有(m^h-1)/(m-1)个节点（二叉树有2^h-1个节点）；</li>
-<li>具有n个节点的度为m的数，其最小高度为[logm(n(m-1)+1)],([x]代表大于等于x的最小整数)（n个节点二叉树最小高度为[log2(n+1)]）;</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;二叉树&quot;&gt;&lt;a href=&quot;#二叉树&quot; class=&quot;headerlink&quot; title=&quot;二叉树&quot;&gt;&lt;/a&gt;二叉树&lt;/h2&gt;&lt;h3 id=&quot;树的基本性质&quot;&gt;&lt;a href=&quot;#树的基本性质&quot; class=&quot;headerlink&quot; title=&quot;树的基本性质&quot;&gt;&lt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Java集合框架的学习</title>
     <link href="http://yoursite.com/2016/11/06/%E9%9B%86%E5%90%88/"/>
     <id>http://yoursite.com/2016/11/06/集合/</id>
     <published>2016-11-06T09:18:33.113Z</published>
-    <updated>2016-11-08T14:17:03.634Z</updated>
+    <updated>2016-11-08T14:29:36.946Z</updated>
     
     <content type="html"><![CDATA[<h1 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h1><ul>
 <li>集合框架：为什么要出现这么多容器？</li>
@@ -52,6 +28,7 @@
 <blockquote>
 <p>因为每一个容器对数据的存储方式都有不同。这个存储方式称之为：数据结构。</p>
 </blockquote>
+<a id="more"></a>
 <ul>
 <li>集合类的由来：</li>
 </ul>
@@ -111,7 +88,8 @@
 &lt;li&gt;集合框架：为什么要出现这么多容器？&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;因为每一个容器对数据的
+&lt;p&gt;因为每一个容器对数据的存储方式都有不同。这个存储方式称之为：数据结构。&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
@@ -123,60 +101,14 @@
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2016/11/04/java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%BB%86%E8%8A%82%E6%B7%B1%E5%85%A5/"/>
-    <id>http://yoursite.com/2016/11/04/java基础知识细节深入/</id>
-    <published>2016-11-04T11:43:41.963Z</published>
-    <updated>2016-11-06T03:26:35.457Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="java基础知识细节深入（及面试题）"><a href="#java基础知识细节深入（及面试题）" class="headerlink" title="java基础知识细节深入（及面试题）"></a>java基础知识细节深入（及面试题）</h1><h2 id="java内存结构"><a href="#java内存结构" class="headerlink" title="java内存结构"></a>java内存结构</h2><h2 id="基础易忽略点"><a href="#基础易忽略点" class="headerlink" title="基础易忽略点"></a>基础易忽略点</h2><h3 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3><h2 id="java重点关键字（this-final-static）"><a href="#java重点关键字（this-final-static）" class="headerlink" title="java重点关键字（this,final,static）"></a>java重点关键字（this,final,static）</h2><h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><h3 id="final"><a href="#final" class="headerlink" title="final"></a>final</h3><h3 id="static"><a href="#static" class="headerlink" title="static"></a>static</h3><h3 id="private-protected-默认"><a href="#private-protected-默认" class="headerlink" title="private\protected\默认"></a>private\protected\默认</h3><h2 id="类与继承"><a href="#类与继承" class="headerlink" title="类与继承"></a>类与继承</h2><h3 id="匿名类与匿名对象"><a href="#匿名类与匿名对象" class="headerlink" title="匿名类与匿名对象"></a>匿名类与匿名对象</h3><h3 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h3><h2 id="java异常及处理"><a href="#java异常及处理" class="headerlink" title="java异常及处理"></a>java异常及处理</h2><h2 id="java-DOS常用命令"><a href="#java-DOS常用命令" class="headerlink" title="java DOS常用命令"></a>java DOS常用命令</h2><h2 id="java接口和抽象类"><a href="#java接口和抽象类" class="headerlink" title="java接口和抽象类"></a>java接口和抽象类</h2><h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><h3 id="包装类"><a href="#包装类" class="headerlink" title="包装类"></a>包装类</h3><p>Integer,Long,Short,Float等便是int long short等基本类型的包装类，里面封装了很多常用静态方法，最大最小值，与其他类型转换，进制转换等。这里重点强调1.5出现后以下几点：</p>
-<ol>
-<li>Integer a=new Integer(4)可以用Integer a=4代替//自动装箱简化书写</li>
-<li>a=a+2//Integer a可以直接运算（a.intValue()），进行自动拆箱，变成int和2运算再将和进行装箱赋值给x</li>
-<li>当数值在byte范围内容，对于1.5以后如果该数据已经存在，不会再开辟新空间</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Integer m=<span class="number">127</span>;</div><div class="line">Integer n=<span class="number">127</span>;</div><div class="line">m==n<span class="comment">//true</span></div><div class="line">Integer a=<span class="number">128</span>;</div><div class="line">Integer b=<span class="number">128</span>;</div><div class="line">a==b<span class="comment">//false</span></div></pre></td></tr></table></figure>
-<h2 id="java多态"><a href="#java多态" class="headerlink" title="java多态"></a>java多态</h2><p>升级三个因素：</p>
-<ol>
-<li>提高效率</li>
-<li>提高安全性</li>
-<li>简化书写</li>
-<li>&amp;&amp;（如果左边为假右不运算）效率比&amp;（两边都运算）高（||和|也一个样）</li>
-<li>for(;;;){}//for的最简单无限循环</li>
-<li>程序计数器：<br>可以看做是当前所执行字节码的行号指示器。通常是改变计数器字节码的值来抉择下一步索要执行的代码，程序员不直接控制。</li>
-</ol>
-<p>寄存器：<br>在程序中我们无法直接控制，由编译器管理。</p>
-<p>栈区：<br>1，每个线程包含一个栈区，栈中只保存基础数据类型的对象和自定义的对象的引用以及局部变量。</p>
-<p>2，每个栈中的数据都是私有的，其他栈不能访问。</p>
-<p>3，当局部数据用完时，所占内存空间会自动释放。<br>JVM栈一个最大的用处是为执行 java方法服务的，每一个方法被执行的时候都会同时创建一个栈帧用于存储局部变量表，操作栈，动态链接，方法出口等信息。<br>每一个方法从调用直至执行完成的过程都对应着一个栈帧在虚拟机中从入栈到出栈的过程。<br>栈的优势在于存取速度比较快，仅次于寄存器。缺点是存储在栈中的数据的大小和生存周期是确定的，缺乏灵活性。</p>
-<p>堆区：<br>1，通过new建立的数组和对象都存储在堆中。</p>
-<p>2，每一个对象都有相应的内存地址值。</p>
-<p>3，对象中的变量都有默认初始化值。</p>
-<p>4，数组和对象在没有引用变量指向它的时候，才变成垃圾，不能再被使用，但是仍然占着内存，在随后的一个不确定的时间被垃圾回收器释放掉。</p>
-<p>另外要明确的是每一个Java应用都唯一对应一个JVM实例，每一个实例唯一对应一个堆。在java堆中还必须包含能查找到对象类型数据（如对象类型，父类，实现的接口，方法等）的地址信息，<br>这些类型数据（优先于对象存在）都存储在方法区中。<br>堆的优势在于可以动态地分配内存的大小，生存周期也不必事先告诉编译器，因为它是运行时动态地分配内存的，并用垃圾回收机制回收那些不用的数据。缺点是存取速度比较慢。</p>
-<p>方法区:<br>方法区本身又分为以下几个区域：<br>1.静态数据区，存放静态数据的地方</p>
-<p>2.常量区：就是下面要介绍的常量池。</p>
-<p>3.代码区：存放方法代码的区域<br>总之，方法区是JVM在装载类文件时，用于存储类型信息的(类的描述信息)地方，是一片给各个线程共享的内存区域。</p>
-<p>常量池：<br>常量池是Class文件结构中与其他项目关联最多的数据类型，它本身是方法区中的一个数据结构。在方法区中，每个类型都对应一个常量池，<br>常量池中存储了诸如文字字符串、final变量值、类名和方法名常量。JVM把常量池组织为入口列表的形式，可通过索引来访问常量池中的各个入口，<br>并用入口标识来表示该常量池存储的数据类型。常量池在编译期间就被确定，并被保存在已编译的.class文件中的一些数据，一般分为两大类，字面量和引用量。<br>字面量入全面提到的文本字符串，final变量等。类名和方法名属于引用量。<br>引用量最常见的一种用法是在调用方法的时候，根据方法名找到方法的引用，并以此定位到函数体进进行函数代码的执行。<br>引用量：<br>1，类和接口的权限定名。<br>2，字段的名称和描述符。<br>3，方法的名称和描述符。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;java基础知识细节深入（及面试题）&quot;&gt;&lt;a href=&quot;#java基础知识细节深入（及面试题）&quot; class=&quot;headerlink&quot; title=&quot;java基础知识细节深入（及面试题）&quot;&gt;&lt;/a&gt;java基础知识细节深入（及面试题）&lt;/h1&gt;&lt;h2 id=&quot;j
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Java String类深入理解</title>
     <link href="http://yoursite.com/2016/11/03/String%E7%B1%BB%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/"/>
     <id>http://yoursite.com/2016/11/03/String类深入理解/</id>
     <published>2016-11-03T10:20:06.408Z</published>
-    <updated>2016-11-08T14:17:03.634Z</updated>
+    <updated>2016-11-08T14:29:36.945Z</updated>
     
     <content type="html"><![CDATA[<p>在这里主要说一些String类的细节，易忽略的点，以及面试题</p>
+<a id="more"></a>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String s1=<span class="string">"abc;//s1是一个类类型变量，“abc"</span>是一个对象。</div><div class="line">s1=<span class="string">"ab"</span>;<span class="comment">//新建立了一个对象，s1指向这个对象，原来的"abc"还在堆内存中。</span></div><div class="line">String s2=<span class="keyword">new</span> String(<span class="string">"abc"</span>);<span class="comment">//不使用！建立了两个对象</span></div><div class="line">String s3=<span class="string">"abc"</span>;<span class="comment">//与s1共用一个对象，或者说s1,s3指向同一对象，不会再开辟空间。</span></div></pre></td></tr></table></figure>
 <blockquote>
 <p>字符串的最大特点：一旦被初始化就不可以改变。<br>字符串比较使用.equals()，不使用c语言的==。</p>
@@ -193,7 +125,6 @@
     <summary type="html">
     
       &lt;p&gt;在这里主要说一些String类的细节，易忽略的点，以及面试题&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=
     
     </summary>
     
@@ -205,11 +136,11 @@
   </entry>
   
   <entry>
-    <title>JAVA单例设计模式</title>
-    <link href="http://yoursite.com/2016/11/01/JAVA%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2016/11/01/JAVA单例设计模式/</id>
+    <title>Java单例设计模式</title>
+    <link href="http://yoursite.com/2016/11/01/Java%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2016/11/01/Java单例设计模式/</id>
     <published>2016-11-01T06:47:51.744Z</published>
-    <updated>2016-11-01T08:32:09.405Z</updated>
+    <updated>2016-11-08T14:30:03.930Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>单例设计模式 懒汉式/饿汉式</p>
