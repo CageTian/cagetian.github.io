@@ -139,6 +139,46 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2017/03/18/kali中文设置/">
+                kali中文设置
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2017-03-18</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Other/">Other</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>第一步：leafpad /etc/apt/sources.list</p>
+<p>修改sources.list文件(etc/apt目录下）在下方加几个软件源</p>
+<p>#官方源<br>deb <a href="http://http.kali.org/kali" target="_blank" rel="external">http://http.kali.org/kali</a> kali main non-free contrib<br>deb-src <a href="http://http.kali.org/kali" target="_blank" rel="external">http://http.kali.org/kali</a> kali main non-free contrib<br>deb <a href="http://security.kali.org/kali-security" target="_blank" rel="external">http://security.kali.org/kali-security</a> kali/updates main contrib non-free</p>
+<p>#中科大kali源<br>deb <a href="http://mirrors.ustc.edu.cn/kali" target="_blank" rel="external">http://mirrors.ustc.edu.cn/kali</a> kali main non-free contrib<br>deb-src <a href="http://mirrors.ustc.edu.cn/kali" target="_blank" rel="external">http://mirrors.ustc.edu.cn/kali</a> kali main non-free contrib<br>deb <a href="http://mirrors.ustc.edu.cn/kali-security" target="_blank" rel="external">http://mirrors.ustc.edu.cn/kali-security</a> kali/updates main contrib non-free</p>
+<p>#阿里云kali源<br>deb <a href="http://mirrors.aliyun.com/kali" target="_blank" rel="external">http://mirrors.aliyun.com/kali</a> kali main non-free contrib<br>deb-src <a href="http://mirrors.aliyun.com/kali" target="_blank" rel="external">http://mirrors.aliyun.com/kali</a> kali main non-free contrib<br>deb <a href="http://mirrors.aliyun.com/kali-security" target="_blank" rel="external">http://mirrors.aliyun.com/kali-security</a> kali/updates main contrib non-free</p>
+<p>保存。</p>
+<p>第二步： 解决依赖关系。 apt-get install -f</p>
+<p>第三步：apt-get update<br>apt-get upgrade</p>
+<p>第四步：安装输入法. apt-get install ibus ibus-pinyin</p>
+<p>第六步：重启.reboot</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2016/11/09/集合2/">
                 Java集合框架的学习（续）
             </a>
@@ -432,6 +472,10 @@
         <ul>
             
             <li>
+                <a class="footer-post" href="/2017/03/18/kali中文设置/">kali中文设置</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2016/11/09/集合2/">Java集合框架的学习（续）</a>
             </li>
             
@@ -441,10 +485,6 @@
             
             <li>
                 <a class="footer-post" href="/2016/11/06/集合/">Java集合框架的学习</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2016/11/03/String类深入理解/">Java String类深入理解</a>
             </li>
             
         </ul>

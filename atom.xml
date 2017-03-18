@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-11T09:34:52.725Z</updated>
+  <updated>2017-03-18T04:00:32.779Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>kali中文设置</title>
+    <link href="http://yoursite.com/2017/03/18/kali%E4%B8%AD%E6%96%87%E8%AE%BE%E7%BD%AE/"/>
+    <id>http://yoursite.com/2017/03/18/kali中文设置/</id>
+    <published>2017-03-18T03:59:38.398Z</published>
+    <updated>2017-03-18T04:00:32.779Z</updated>
+    
+    <content type="html"><![CDATA[<p>第一步：leafpad /etc/apt/sources.list</p>
+<p>修改sources.list文件(etc/apt目录下）在下方加几个软件源</p>
+<p>#官方源<br>deb <a href="http://http.kali.org/kali" target="_blank" rel="external">http://http.kali.org/kali</a> kali main non-free contrib<br>deb-src <a href="http://http.kali.org/kali" target="_blank" rel="external">http://http.kali.org/kali</a> kali main non-free contrib<br>deb <a href="http://security.kali.org/kali-security" target="_blank" rel="external">http://security.kali.org/kali-security</a> kali/updates main contrib non-free</p>
+<p>#中科大kali源<br>deb <a href="http://mirrors.ustc.edu.cn/kali" target="_blank" rel="external">http://mirrors.ustc.edu.cn/kali</a> kali main non-free contrib<br>deb-src <a href="http://mirrors.ustc.edu.cn/kali" target="_blank" rel="external">http://mirrors.ustc.edu.cn/kali</a> kali main non-free contrib<br>deb <a href="http://mirrors.ustc.edu.cn/kali-security" target="_blank" rel="external">http://mirrors.ustc.edu.cn/kali-security</a> kali/updates main contrib non-free</p>
+<p>#阿里云kali源<br>deb <a href="http://mirrors.aliyun.com/kali" target="_blank" rel="external">http://mirrors.aliyun.com/kali</a> kali main non-free contrib<br>deb-src <a href="http://mirrors.aliyun.com/kali" target="_blank" rel="external">http://mirrors.aliyun.com/kali</a> kali main non-free contrib<br>deb <a href="http://mirrors.aliyun.com/kali-security" target="_blank" rel="external">http://mirrors.aliyun.com/kali-security</a> kali/updates main contrib non-free</p>
+<p>保存。</p>
+<p>第二步： 解决依赖关系。 apt-get install -f</p>
+<p>第三步：apt-get update<br>apt-get upgrade</p>
+<p>第四步：安装输入法. apt-get install ibus ibus-pinyin</p>
+<p>第六步：重启.reboot</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;第一步：leafpad /etc/apt/sources.list&lt;/p&gt;
+&lt;p&gt;修改sources.list文件(etc/apt目录下）在下方加几个软件源&lt;/p&gt;
+&lt;p&gt;#官方源&lt;br&gt;deb &lt;a href=&quot;http://http.kali.org/kali&quot; tar
+    
+    </summary>
+    
+      <category term="Other" scheme="http://yoursite.com/categories/Other/"/>
+    
+    
+      <category term="Other" scheme="http://yoursite.com/tags/Other/"/>
+    
+  </entry>
   
   <entry>
     <title>Java集合框架的学习（续）</title>
