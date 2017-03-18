@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Sum up, Thinking, Knowledge management">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="T.Cage">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Java单例设计模式"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Sum up, Thinking, Knowledge management" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="T.Cage&#39;s Blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Java单例设计模式 - T.Cage&#39;s Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-code" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/11/01/Java单例设计模式/">
+                Java单例设计模式
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-11-01</span>
+            
+            <a href="#disqus_thread" class="comments">留言</a>
+            
+                <span class="category">
+                    <a href="/categories/JAVA/">JAVA</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <blockquote>
+<p>单例设计模式 懒汉式/饿汉式</p>
+</blockquote>
+<a id="more"></a>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Single</span>//懒汉式的（多线程）安全定义方法（面试常考）</span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Single s=<span class="keyword">null</span>;</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Single</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span>(a==<span class="keyword">null</span>)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">synchronized</span>(Single.class)</div><div class="line">			&#123;</div><div class="line">				<span class="keyword">if</span>(s==<span class="keyword">null</span>)</div><div class="line">					s=<span class="keyword">new</span> Single();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> s;</div><div class="line">	&#125;</div><div class="line">&#125;<span class="comment">//懒汉式用于延迟加载</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Single</span>//饿汉式（开发中常用）</span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Single s=<span class="keyword">new</span> Single();</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">return</span> s;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/JAVA/">#JAVA</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    This blog was developed by <a href="https://github.com/cagetian">T.Cage</a>. The source code is available on my Github. Coding Changes The World.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/09/集合2/">Java集合框架的学习（续）</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/08/Java泛型学习/">Java 泛型（Generic）学习</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/06/集合/">Java集合框架的学习</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/03/String类深入理解/">Java String类深入理解</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/Other/">Other</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/JAVA/">JAVA</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/CageTian">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://twitter.com/?lang=en">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.instagram.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-instagram"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://plus.google.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-google-plus"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:cagetian@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @China. All right reserved | Powered & Hexo <a href="http://www.tiankaiqi.site/">T.Cage</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
