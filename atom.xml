@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-18T04:00:32.779Z</updated>
+  <updated>2017-05-20T12:04:33.240Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>kali中文设置</title>
-    <link href="http://yoursite.com/2017/03/18/kali%E4%B8%AD%E6%96%87%E8%AE%BE%E7%BD%AE/"/>
-    <id>http://yoursite.com/2017/03/18/kali中文设置/</id>
-    <published>2017-03-18T03:59:38.398Z</published>
-    <updated>2017-03-18T04:00:32.779Z</updated>
+    <title>Kali中文设置</title>
+    <link href="http://yoursite.com/2017/05/20/Kali%E4%B8%AD%E6%96%87%E8%AE%BE%E7%BD%AE/"/>
+    <id>http://yoursite.com/2017/05/20/Kali中文设置/</id>
+    <published>2017-05-20T12:01:02.945Z</published>
+    <updated>2017-05-20T12:04:33.240Z</updated>
     
     <content type="html"><![CDATA[<p>第一步：leafpad /etc/apt/sources.list</p>
 <p>修改sources.list文件(etc/apt目录下）在下方加几个软件源</p>
