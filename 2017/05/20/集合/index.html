@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Sum up, Thinking, Knowledge management">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="T.Cage">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Java集合框架的学习"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Sum up, Thinking, Knowledge management" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="T.Cage&#39;s Blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Java集合框架的学习 - T.Cage&#39;s Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-code" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2017/05/20/集合/">
+                Java集合框架的学习
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2017-05-20</span>
+            
+            <a href="#disqus_thread" class="comments">留言</a>
+            
+                <span class="category">
+                    <a href="/categories/JAVA/">JAVA</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h1 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h1><ul>
+<li>集合框架：为什么要出现这么多容器？</li>
+</ul>
+<blockquote>
+<p>因为每一个容器对数据的存储方式都有不同。这个存储方式称之为：数据结构。</p>
+</blockquote>
+<a id="more"></a>
+<ul>
+<li>集合类的由来：</li>
+</ul>
+<blockquote>
+<p>对象用于封装特有数据，对象多了需要存储，如果对象的个数不确定。就使用集合容器进行存储。</p>
+</blockquote>
+<ul>
+<li>集合特点：</li>
+</ul>
+<blockquote>
+<ol>
+<li>用于存储对象的容器。</li>
+<li>集合的长度是可变的。</li>
+<li>集合中不可以存储基本数据类型值。 </li>
+</ol>
+</blockquote>
+<p>集合容器因为内部的数据结构不同，有多种具体容器。<br>不断的向上抽取，就形成了集合框架。<br><img src="http://i.imgur.com/WhI1dni.png" alt=""></p>
+<h2 id="接口-Collection"><a href="#接口-Collection" class="headerlink" title="接口 Collection"></a>接口 Collection<e></e></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">retainAll</span><span class="params">(Collection&lt;?&gt; c)</span> <span class="comment">//取交集</span></span></div><div class="line"><span class="keyword">boolean</span> <span class="title">removeAll</span><span class="params">(Collection&lt;?&gt; c)</span>  <span class="comment">//删除与c里面元素相同的元素</span></div><div class="line"><span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(Collection&lt;? extends E&gt; c)</span> <span class="comment">//取并集</span></div><div class="line"><span class="keyword">boolean</span> <span class="title">containsAll</span><span class="params">(Collection&lt;?&gt; c)</span> <span class="comment">//如果此 collection 包含指定 collection 中的所有元素，则返回 true。</span></div></pre></td></tr></table></figure>
+<h3 id="Iterator-iterator"><a href="#Iterator-iterator" class="headerlink" title="Iterator iterator()"></a>Iterator<e> iterator()</e></h3><p>返回在此 collection 的元素上进行迭代的迭代器。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> <span class="comment">//如果仍有元素可以迭代，则返回 true。 </span></span></div><div class="line">E <span class="title">next</span><span class="params">()</span><span class="comment">//返回迭代的下一个元素。 </span></div><div class="line"><span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span><span class="comment">// 从迭代器指向的 collection 中移除迭代器返回的最后一个元素（可选操作）。 </span></div><div class="line"><span class="title">for</span><span class="params">(Iterator it=对象.iterator()</span>;it.hasNext();)</div><div class="line">	it.next();<span class="comment">//do something</span></div></pre></td></tr></table></figure></p>
+<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p>元素是有序的可以重复，因为有索引</p>
+<ul>
+<li>List特有方法（凡是可以操作角标的方法都是List特有方法）</li>
+<li>ListIterator是Iterator的子接口。在迭代时，不可以通过集合对象的方法操作集合中的元素，因为会发生并发异常。所以在迭代市只能用迭代器方法操作元素，但是Iterator方法是有限的，如果想要添加修改等操作需要使用子接口，ListIterator</li>
+</ul>
+<blockquote>
+<p>注意不能用迭代器的同时使用集合的方法进行操作（并发修改），否则会抛出异常ConcurrentModificationException</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">ListIterator方法：</div><div class="line"> <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(E e)</span> </span></div><div class="line">          将指定的元素插入列表（可选操作）。 </div><div class="line"> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </div><div class="line">          以正向遍历列表时，如果列表迭代器有多个元素，则返回 <span class="keyword">true</span>（换句话说，如果 next 返回一个元素而不是抛出异常，则返回 <span class="keyword">true</span>）。 </div><div class="line"> <span class="keyword">boolean</span> <span class="title">hasPrevious</span><span class="params">()</span> </div><div class="line">          如果以逆向遍历列表，列表迭代器有多个元素，则返回 <span class="keyword">true</span>。 </div><div class="line"> E <span class="title">next</span><span class="params">()</span> </div><div class="line">          返回列表中的下一个元素。 </div><div class="line"> <span class="keyword">int</span> <span class="title">nextIndex</span><span class="params">()</span> </div><div class="line">          返回对 next 的后续调用所返回元素的索引。 </div><div class="line"> E <span class="title">previous</span><span class="params">()</span> </div><div class="line">          返回列表中的前一个元素。 </div><div class="line"> <span class="keyword">int</span> <span class="title">previousIndex</span><span class="params">()</span> </div><div class="line">          返回对 previous 的后续调用所返回元素的索引。 </div><div class="line"> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </div><div class="line">          从列表中移除由 next 或 previous 返回的最后一个元素（可选操作）。 </div><div class="line"> <span class="keyword">void</span> <span class="title">set</span><span class="params">(E e)</span> </div><div class="line">          用指定元素替换 next 或 previous 返回的最后一个元素（可选操作）。</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span><span class="comment">//在列表的指定位置插入指定元素（可选操作）。 </span></span></div><div class="line"><span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(Collection&lt;? extends E&gt; c)</span><span class="comment">//添加指定 collection 中的所有元素到此列表的结尾，顺序是指定 collection 的迭代器返回这些元素的顺序</span></div><div class="line">ListIterator&lt;E&gt; <span class="title">listIterator</span><span class="params">()</span><span class="comment">//返回此列表元素的列表迭代器（按适当顺序）。 </span></div><div class="line">List&lt;E&gt; <span class="title">subList</span><span class="params">(<span class="keyword">int</span> fromIndex, <span class="keyword">int</span> toIndex)</span><span class="comment">//返回列表中指定的 fromIndex（包括 ）和 toIndex（不包括）之间的部分视图。</span></div><div class="line">E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </div><div class="line">E <span class="title">set</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </div><div class="line">E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span></div></pre></td></tr></table></figure>
+<h3 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h3><p>内部是数组数据结构，是同步的。增删，查询都很慢！<br>1.2版本之前使用（当时没有集合框架）较多后被ArrayList替代<br><em>枚举就是Vector特有的取出方式，枚举和迭代器很像，因为枚举名称方法较长所以被迭代器取代了</em></p>
+<h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><p>内部是数组数据结构，是不同步（异步）的。替代了Vector。查询的速度快。<br>1.2版本之后出现替代了Vector，默认构造元素长度是10，超出后按50%延长（Vector是100%）。<br>比较的时候需要注意equals方法的重写。</p>
+<h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3><p>内部是链表数据结构，是不同步的。增删元素的速度很快。</p>
+<ul>
+<li>特有方法</li>
+<li>1.6版本以后的方法<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">offer</span><span class="params">(E e)</span> </span></div><div class="line">         将指定元素添加到此列表的末尾（最后一个元素）。 </div><div class="line"><span class="keyword">boolean</span> <span class="title">offerFirst</span><span class="params">(E e)</span> </div><div class="line">         在此列表的开头插入指定的元素。 </div><div class="line"><span class="keyword">boolean</span> <span class="title">offerLast</span><span class="params">(E e)</span> </div><div class="line">         在此列表末尾插入指定的元素。 </div><div class="line">E <span class="title">peek</span><span class="params">()</span> </div><div class="line">         获取但不移除此列表的头（第一个元素）。 </div><div class="line">E <span class="title">peekFirst</span><span class="params">()</span> </div><div class="line">         获取但不移除此列表的第一个元素；如果此列表为空，则返回 <span class="keyword">null</span>。 </div><div class="line">E <span class="title">peekLast</span><span class="params">()</span> </div><div class="line">         获取但不移除此列表的最后一个元素；如果此列表为空，则返回 <span class="keyword">null</span>。 </div><div class="line">E <span class="title">poll</span><span class="params">()</span> </div><div class="line">         获取并移除此列表的头（第一个元素） </div><div class="line">E <span class="title">pollFirst</span><span class="params">()</span> </div><div class="line">         获取并移除此列表的第一个元素；如果此列表为空，则返回 <span class="keyword">null</span>。 </div><div class="line">E <span class="title">pollLast</span><span class="params">()</span> </div><div class="line">         获取并移除此列表的最后一个元素；如果此列表为空，则返回 <span class="keyword">null</span>。</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>元素是无序的，不可以重复<br>Set集合的功能和Collection功能是一致的</p>
+<h3 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h3><p>数据结构是哈希表，线程是非同步的<br>哈希表储存方式：先判断地址值（hashCode）是否一样，不一样就存入，一样的话继续判断是否同一个对象（equals方法），不是同一对象的话会在同地址下顺延。</p>
+<blockquote>
+<p>哈希表确定元素是否相同</p>
+<ol>
+<li>判断的是两个元素的哈希值是否相同。如果相同，在判断两个对象的内容是否相同。</li>
+<li>判断哈希值相同，其实判断的是对象的hashCode的方法。判断内容相同，用的是equals方法。<br>注意：如果哈希值不同，是不需要判断equals。<br><img src="http://i.imgur.com/OnOQkYw.png" alt=""></li>
+</ol>
+</blockquote>
+<h3 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h3><p>可以对Set集合中的元素进行排序<br>自定义数据类型时需要重写Compareble里的compareTo函数</p>
+<blockquote>
+<p> int compareTo(T o) //比较此对象与指定对象的顺序。 </p>
+</blockquote>
+<p>底层数据结构是二叉树，保证元素唯一性的依据compareTo方法return0.<br>treeSet排序的第一种方式：让让元素自身具备比较性，元素需要实现CompareTo方法。这种顺序叫做自然顺序也叫默认顺序<br>TreeSet排序的第二种方式：让集合自身具备比较功能，定义一个类实现Comparator接口，覆盖compare方法。将该类对象作为参数传递给TreeSet集合的构造函数。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Iterator;</div><div class="line"><span class="keyword">import</span> java.util.TreeSet;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeSetTest</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComparatorByLength</span> <span class="keyword">implements</span> <span class="title">Comparator</span> </span>&#123;</div><div class="line">	</div><div class="line">		<span class="meta">@Override</span></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Object o1, Object o2)</span> </span>&#123;</div><div class="line">			</div><div class="line">			String s1 = (String)o1;</div><div class="line">			String s2 = (String)o2;</div><div class="line">			</div><div class="line">			<span class="keyword">int</span> temp = s1.length()-s2.length();</div><div class="line">			</div><div class="line">			<span class="keyword">return</span> temp==<span class="number">0</span>? s1.compareTo(s2): temp;</div><div class="line">			<span class="comment">//基础类型都有compareTo方法</span></div><div class="line">		&#125;</div><div class="line">	</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"></div><div class="line">		TreeSet ts = <span class="keyword">new</span> TreeSet(<span class="keyword">new</span> ComparatorByLength());</div><div class="line"></div><div class="line">		ts.add(<span class="string">"aaaaa"</span>);</div><div class="line">		ts.add(<span class="string">"zz"</span>);</div><div class="line">		ts.add(<span class="string">"nbaq"</span>);</div><div class="line">		ts.add(<span class="string">"cba"</span>);</div><div class="line">		ts.add(<span class="string">"abc"</span>);</div><div class="line">		</div><div class="line">		Iterator it = ts.iterator();</div><div class="line">		</div><div class="line">		<span class="keyword">while</span>(it.hasNext())&#123;</div><div class="line">			System.out.println(it.next());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/JAVA/">#JAVA</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    This blog was developed by <a href="https://github.com/cagetian">T.Cage</a>. The source code is available on my Github. Coding Changes The World.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2017/12/05/Java日期时间处理/">Java单例设计模式</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/11/26/机器学习缺失值处理方法汇总/">机器学习缺失值处理方法汇总</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/05/20/集合2/">Java集合框架的学习（续）</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/05/20/集合/">Java集合框架的学习</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/数据挖掘/">数据挖掘</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Other/">Other</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/JAVA/">JAVA</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/CageTian">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://twitter.com/?lang=en">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.instagram.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-instagram"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://plus.google.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-google-plus"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:cagetian@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @China. All right reserved | Powered & Hexo <a href="http://www.tiankaiqi.site/">T.Cage</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

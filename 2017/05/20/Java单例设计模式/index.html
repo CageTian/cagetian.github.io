@@ -20,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="T.Cage&#39;s Blog"/>
+        <meta property="og:title" content="Java单例设计模式"/>
     
 
     <!--Open Graph Description-->
@@ -33,7 +33,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -44,7 +44,7 @@
 
     <!-- Title -->
     
-    <title>Other - T.Cage&#39;s Blog</title>
+    <title>Java单例设计模式 - T.Cage&#39;s Blog</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -119,9 +119,7 @@
 <div class="container">
 
     <!-- Main Content -->
-    
-
-<div class="row">
+    <div class="row">
     <div class="col-sm-12">
 
         <!--Title and Logo-->
@@ -129,41 +127,62 @@
     <div class="logo">
         <a href="/"><i class="logo-icon fa fa-code" aria-hidden="true"></i></a>
         
-            <h1 id="main-title" class="title">#Other</h1>
-        
     </div>
 </header>
 
-        <section class="main archive-container">
+        <section class="main">
             
-                <div class="archive-post">
-    <a href="/2017/05/20/MarkdownPad/">
-        <span class="archive-date">
-            May 2017
-        </span>
-        如何使用Markdown优雅的写博客
-    </a>
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2017/05/20/Java单例设计模式/">
+                Java单例设计模式
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2017-05-20</span>
+            
+            <a href="#disqus_thread" class="comments">留言</a>
+            
+                <span class="category">
+                    <a href="/categories/JAVA/">JAVA</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <blockquote>
+<p>单例设计模式 懒汉式/饿汉式</p>
+</blockquote>
+<a id="more"></a>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Single</span>//懒汉式的（多线程）安全定义方法（面试常考）</span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Single s=<span class="keyword">null</span>;</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Single</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span>(a==<span class="keyword">null</span>)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">synchronized</span>(Single.class)</div><div class="line">			&#123;</div><div class="line">				<span class="keyword">if</span>(s==<span class="keyword">null</span>)</div><div class="line">					s=<span class="keyword">new</span> Single();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> s;</div><div class="line">	&#125;</div><div class="line">&#125;<span class="comment">//懒汉式用于延迟加载</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Single</span>//饿汉式（开发中常用）</span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Single s=<span class="keyword">new</span> Single();</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">return</span> s;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/JAVA/">#JAVA</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
 </div>
-            
-                <div class="archive-post">
-    <a href="/2017/05/20/Kali中文设置/">
-        <span class="archive-date">
-            May 2017
-        </span>
-        Kali中文设置
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2017/05/20/hello-world/">
-        <span class="archive-date">
-            May 2017
-        </span>
-        Hello World
-    </a>
-</div>
-            
         </section>
+
     </div>
 </div>
 

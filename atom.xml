@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-11-26T13:49:30.000Z</updated>
+  <updated>2017-12-05T08:34:44.992Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,201 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java单例设计模式</title>
+    <link href="http://yoursite.com/2017/12/05/Java%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86/"/>
+    <id>http://yoursite.com/2017/12/05/Java日期时间处理/</id>
+    <published>2017-12-05T08:34:44.984Z</published>
+    <updated>2017-12-05T08:34:44.992Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>Java中时间日期的操作</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="Java中时间日期的操作"><a href="#Java中时间日期的操作" class="headerlink" title="Java中时间日期的操作"></a>Java中时间日期的操作</h1><h2 id="相关的类"><a href="#相关的类" class="headerlink" title="相关的类"></a>相关的类</h2><h3 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h3><p>java.util.Date<br>很多方法已经过时，现在主要用于在Calendar类和String转换间的一个存储介质.<br><strong>所有已实现的接口：</strong><br>    Serializable, Cloneable, Comparable<date><br><strong>子类：</strong><br>    Date, Time, Timestamp<br><strong>构造方法：</strong> </date></p>
+<pre><code>Date():
+          分配 Date 对象并初始化此对象，以表示分配它的时间（精确到毫秒）。
+Date(long date):
+          分配 Date 对象并初始化此对象，以表示自从标准基准时间（称为“历元（epoch）”，即 1970 年 1 月 1 日 00:00:00 GMT）以来的指定毫秒数。
+</code></pre><p><strong>主要方法:</strong></p>
+<pre><code>boolean     after(Date when)：测试此日期是否在指定日期之后。
+boolean     before(Date when)：测试此日期是否在指定日期之前。
+</code></pre><h3 id="Calendar"><a href="#Calendar" class="headerlink" title="Calendar"></a>Calendar</h3><p>目前用于操作时间对象的主要类，是一个抽象类没有构造方法，通过<br>静态方法<em>Calendar.getInstance()</em> 来得到Calendar对象。<br><strong>所有已实现的接口：</strong><br>    Serializable, Cloneable, Comparable<calendar><br><strong>子类：</strong><br>    GregorianCalendar<br><strong>构造方法：</strong><br>public static Calendar getInstance(TimeZone zone,Locale aLocale)</calendar></p>
+<pre><code>（无参数，任意一个参数也可）使用指定时区和语言环境获得一个日历。返回的 Calendar 基于当前时间，使用了给定的时区和给定的语言环境。
+
+参数：
+    zone - 要使用的时区 （默认为系统时区）
+    aLocale - 用于星期数据的语言环境 （默认为系统语言，常用的还有Locale.ENGLISH）
+返回：
+    一个 Calendar。 
+</code></pre><p><strong>主要方法：</strong></p>
+<pre><code>Date     getTime()
+          返回一个表示此 Calendar 时间值（从历元至现在的毫秒偏移量）的 Date 对象。
+void     setTime(Date date)
+          使用给定的 Date 设置此 Calendar 的时间。
+void     set(int field, int value)
+          将给定的日历字段设置为给定值。
+void     set(int year, int month, int date)
+          设置日历字段 YEAR、MONTH 和 DAY_OF_MONTH 的值。
+void     set(int year, int month, int date, int hourOfDay, int minute)
+          设置日历字段 YEAR、MONTH、DAY_OF_MONTH、HOUR_OF_DAY 和 MINUTE 的值。
+void     set(int year, int month, int date, int hourOfDay, int minute, int second)
+          设置字段 YEAR、MONTH、DAY_OF_MONTH、HOUR、MINUTE 和 SECOND 的值。
+int     get(int field)
+          返回给定日历字段的值。
+abstract  void     add(int field, int amount)
+          根据日历的规则，为给定的日历字段添加或减去指定的时间量。
+abstract  void     roll(int field, boolean up)
+          在给定的时间字段上添加或减去（上/下）单个时间单元，不更改更大的字段。
+void     roll(int field, int amount)
+          向指定日历字段添加指定（有符号的）时间量，不更改更大的字段。
+</code></pre><p><strong>注意事项：</strong></p>
+<ul>
+<li><p>宽松性</p>
+<p>  Calendar 有两种解释日历字段的模式，即 lenient 和 non-lenient。当 Calendar 处于 lenient 模式时，它可接受比它所生成的日历字段范围更大范围内的值。当 Calendar 重新计算日历字段值，以便由 get() 返回这些值时，所有日历字段都被标准化。例如，lenient 模式下的 GregorianCalendar 将 MONTH == JANUARY、DAY_OF_MONTH == 32 解释为 February 1。</p>
+<p>  当 Calendar 处于 non-lenient 模式时，如果其日历字段中存在任何不一致性，它都会抛出一个异常。例如，GregorianCalendar 总是在 1 与月份的长度之间生成 DAY_OF_MONTH 值。如果已经设置了任何超出范围的字段值，那么在计算时间或日历字段值时，处于 non-lenient 模式下的 GregorianCalendar 会抛出一个异常。</p>
+</li>
+<li><p>第一个星期<br>Calendar 使用两个参数定义了特定于语言环境的 7 天制星期：星期的第一天和第一个星期中的最小一天（从 1 到 7）。这些数字取自构造 Calendar 时的语言环境资源数据。还可以通过为其设置值的方法来显式地指定它们。</p>
+<p>  在设置或获得 WEEK_OF_MONTH 或 WEEK_OF_YEAR 字段时，Calendar 必须确定一个月或一年的第一个星期，以此作为参考点。一个月或一年的第一个星期被确定为开始于 getFirstDayOfWeek() 的最早七天，它最少包含那一个月或一年的 getMinimalDaysInFirstWeek() 天数。第一个星期之前的各星期编号为 …、-1、0；之后的星期编号为 2、3、…。注意，get() 返回的标准化编号方式可能有所不同。例如，特定 Calendar 子类可能将某一年第 1 个星期之前的那个星期指定为前一年的第 n 个星期。</p>
+</li>
+<li><p>日历字段解析<br>  在计算日历字段中的日期和时间时，可能没有足够的信息用于计算（例如只有年和月，但没有日），或者可能有不一致的信息( 例如 “Tuesday, July 15, 1996”（格林威治时间）——实际上，1996 年 7 月 15 日是星期一 )。Calendar 将解析日历字段值，以便用以下方式确定日期和时间。</p>
+<p>  如果日历字段值中存在任何冲突，则 Calendar 将为最近设置的日历字段提供优先权。以下是日历字段的默认组合。将使用由最近设置的单个字段所确定的最近组合。</p>
+<p>  对于日期字段：</p>
+<pre><code>YEAR + MONTH + DAY_OF_MONTH
+YEAR + MONTH + WEEK_OF_MONTH + DAY_OF_WEEK
+YEAR + MONTH + DAY_OF_WEEK_IN_MONTH + DAY_OF_WEEK
+YEAR + DAY_OF_YEAR
+YEAR + DAY_OF_WEEK + WEEK_OF_YEAR
+</code></pre></li>
+</ul>
+<pre><code>对于时间字段：
+
+     HOUR_OF_DAY
+     AM_PM + HOUR
+
+
+如果在选定的字段组合中，还有尚未设置值的任一日历字段，那么 Calendar 将使用其默认值。每个字段的默认值可能依据具体的日历系统而有所不同。例如，在 GregorianCalendar 中，字段的默认值与历元起始部分的字段值相同：即 YEAR = 1970、MONTH = JANUARY、DAY_OF_MONTH = 1，等等。
+
+注： 对于某些特别时间的解释可能会有某些歧义，可以用下列方式解决：
+
+    23:59 是一天中的最后一分钟，而 00:00 是下一天的第一分钟。因此，1999 年 12 月 31 日的 23:59 &lt; 2000 年 1 月 1 日的 00:00。
+    尽管从历史上看不够精确，但午夜也属于 &quot;am&quot;,，中午属于 &quot;pm&quot;，所以在同一天，12:00 am ( 午夜 ) &lt; 12:01 am，12:00 pm ( 中午 ) &lt; 12:01 pm。 
+
+日期或时间格式字符串不是日历定义的一部分，因为在运行时，用户必须能够修改或重写它们。可以使用 DateFormat 格式化日期。
+</code></pre><ul>
+<li><p>字段操作<br>  可以使用三种方法更改日历字段：set()、add() 和 roll()。</p>
+<p>  set(f, value) 将日历字段 f 更改为 value。此外，它设置了一个内部成员变量，以指示日历字段 f 已经被更改。尽管日历字段 f 是立即更改的，但是直到下次调用 get()、getTime()、getTimeInMillis()、add() 或 roll() 时才会重新计算日历的时间值（以毫秒为单位）。因此，多次调用 set() 不会触发多次不必要的计算。使用 set() 更改日历字段的结果是，其他日历字段也可能发生更改，这取决于日历字段、日历字段值和日历系统。此外，在重新计算日历字段之后，get(f) 没必要通过调用 set 方法返回 value 集合。具体细节是通过具体的日历类确定的。</p>
+<p>  示例：假定 GregorianCalendar 最初被设置为 1999 年 8 月 31 日。调用 set(Calendar.MONTH, Calendar.SEPTEMBER) 将该日期设置为 1999 年 9 月 31 日。如果随后调用 getTime()，那么这是解析 1999 年 10 月 1 日的一个暂时内部表示。但是，在调用 getTime() 之前调用 set(Calendar.DAY_OF_MONTH, 30) 会将该日期设置为 1999 年 9 月 30 日，因为在调用 set() 之后没有发生重新计算。</p>
+<p>  add(f, delta) 将 delta 添加到 f 字段中。这等同于调用 set(f, get(f) + delta)，但要带以下两个调整：</p>
+<pre><code>Add 规则 1。调用后 f 字段的值减去调用前 f 字段的值等于 delta，以字段 f 中发生的任何溢出为模。溢出发生在字段值超出其范围时，结果，下一个更大的字段会递增或递减，并将字段值调整回其范围内。
+
+Add 规则 2。如果期望某一个更小的字段是不变的，但让它等于以前的值是不可能的，因为在字段 f 发生更改之后，或者在出现其他约束之后，比如时区偏移量发生更改，它的最大值和最小值也在发生更改，然后它的值被调整为尽量接近于所期望的值。更小的字段表示一个更小的时间单元。HOUR 是一个比 DAY_OF_MONTH 小的字段。对于不期望是不变字段的更小字段，无需进行任何调整。日历系统会确定期望不变的那些字段。
+</code></pre><p>  此外，与 set() 不同，add() 强迫日历系统立即重新计算日历的毫秒数和所有字段。</p>
+<p>  示例：假定 GregorianCalendar 最初被设置为 1999 年 8 月 31 日。调用 add(Calendar.MONTH, 13) 将日历设置为 2000 年 9 月 30 日。Add 规则 1 将 MONTH 字段设置为 September，因为向 August 添加 13 个月得出的就是下一年的 September。因为在 GregorianCalendar 中，DAY_OF_MONTH 不可能是 9 月 31 日，所以 add 规则 2 将 DAY_OF_MONTH 设置为 30，即最可能的值。尽管它是一个更小的字段，但不能根据规则 2 调整 DAY_OF_WEEK，因为在 GregorianCalendar 中的月份发生变化时，该值也需要发生变化。</p>
+<p>  roll(f, delta) 将 delta 添加到 f 字段中，但不更改更大的字段。这等同于调用 add(f, delta)，但要带以下调整：</p>
+<pre><code>Roll 规则。在完成调用后，更大的字段无变化。更大的字段表示一个更大的时间单元。DAY_OF_MONTH 是一个比 HOUR 大的字段。
+</code></pre></li>
+</ul>
+<pre><code>使用模型。为了帮助理解 add() 和 roll() 的行为，假定有一个用户界面组件，它带有用于月、日、年和底层 GregorianCalendar 的递增或递减按钮。如果从界面上读取的日期为 1999 年 1 月 31 日，并且用户按下月份的递增按钮，那么应该得到什么？如果底层实现使用 set()，那么可以将该日期读为 1999 年 3 月 3 日。更好的结果是 1999 年 2 月 28 日。此外，如果用户再次按下月份的递增按钮，那么该日期应该读为 1999 年 3 月 31 日，而不是 1999 年 3 月 28 日。通过保存原始日期并使用 add() 或 roll()，根据是否会影响更大的字段，用户界面可以像大多数用户所期望的那样运行。
+</code></pre><h3 id="SimpleDateFormat"><a href="#SimpleDateFormat" class="headerlink" title="SimpleDateFormat"></a>SimpleDateFormat</h3><p>主要用于字符串和Date类型的相互转换<br><strong>父类：</strong></p>
+<pre><code>java.lang.Object
+  继承者 java.text.Format
+      继承者 java.text.DateFormat
+          继承者 java.text.SimpleDateFormat
+</code></pre><p><strong>构造方法：</strong></p>
+<pre><code>SimpleDateFormat()
+          用默认的模式和默认语言环境的日期格式符号构造 SimpleDateFormat。
+SimpleDateFormat(String pattern)
+          用给定的模式和默认语言环境的日期格式符号构造 SimpleDateFormat。
+SimpleDateFormat(String pattern, DateFormatSymbols formatSymbols)
+          用给定的模式和日期符号构造 SimpleDateFormat。
+SimpleDateFormat(String pattern, Locale locale)
+          用给定的模式和给定语言环境的默认日期格式符号构造 SimpleDateFormat。
+</code></pre><p><strong>主要方法：</strong></p>
+<pre><code>Date     parse(String source)
+          从给定字符串的开始解析文本，以生成一个日期。
+String     format(Date date)
+          将一个 Date 格式化为日期/时间字符串。
+</code></pre><p><strong>注意事项：</strong><br>日期和时间格式由日期和时间模式 字符串指定。在日期和时间模式字符串中，未加引号的字母 ‘A’ 到 ‘Z’ 和 ‘a’ 到 ‘z’ 被解释为模式字母，用来表示日期或时间字符串元素。文本可以使用单引号 (‘) 引起来，以免进行解释。”‘’” 表示单引号。所有其他字符均不解释；只是在格式化时将它们简单复制到输出字符串，或者在解析时与输入字符串进行匹配。<br>模式字母对应表如下：<br><img src="https://i.imgur.com/DGRVBR3.png" alt=""><br>母通常是重复的，其数量确定其精确表示：</p>
+<ul>
+<li><strong>Text</strong>: 对于格式化来说，如果模式字母的数量大于等于 4，则使用完全形式；否则，在可用的情况下使用短形式或缩写形式。对于解析来说，两种形式都是可接受的，与模式字母的数量无关。</li>
+</ul>
+<ul>
+<li><strong>Number</strong>: 对于格式化来说，模式字母的数量是最小的数位，如果数位不够，则用 0 填充以达到此数量。对于解析来说，模式字母的数量被忽略，除非必须分开两个相邻字段。</li>
+</ul>
+<ul>
+<li>Year: 如果格式器的 Calendar 是格里高利历，则应用以下规则。<pre><code>对于格式化来说，如果模式字母的数量为 2，则年份截取为 2 位数,否则将年份解释为 number。
+对于解析来说，如果模式字母的数量大于 2，则年份照字面意义进行解释，而不管数位是多少。因此使用模式 &quot;MM/dd/yyyy&quot;，将 &quot;01/11/12&quot; 解析为公元 12 年 1 月 11 日。
+在解析缩写年份模式（&quot;y&quot; 或 &quot;yy&quot;）时，SimpleDateFormat 必须相对于某个世纪来解释缩写的年份。这通过将日期调整为 SimpleDateFormat 实例创建之前的 80 年和之后 20 年范围内来完成。例如，在 &quot;MM/dd/yy&quot; 模式下，如果 SimpleDateFormat 实例是在 1997 年 1 月 1 日创建的，则字符串 &quot;01/11/12&quot; 将被解释为 2012 年 1 月 11 日，而字符串 &quot;05/04/64&quot; 将被解释为 1964 年 5 月 4 日。在解析时，只有恰好由两位数字组成的字符串（如 Character.isDigit(char) 所定义的）被解析为默认的世纪。其他任何数字字符串将照字面意义进行解释，例如单数字字符串，3 个或更多数字组成的字符串，或者不都是数字的两位数字字符串（例如&quot;-1&quot;）。因此，在相同的模式下， &quot;01/02/3&quot; 或 &quot;01/02/003&quot; 解释为公元 3 年 1 月 2 日。同样，&quot;01/02/-3&quot; 解析为公元前 4 年 1 月 2 日。 
+</code></pre>  否则，则应用日历系统特定的形式。对于格式化和解析，如果模式字母的数量为 4 或大于 4，则使用日历特定的 long form。否则，则使用日历特定的 short or abbreviated form。</li>
+</ul>
+<ul>
+<li><strong>Month</strong>: 如果模式字母的数量为 3 或大于 3，则将月份解释为 text；否则解释为 number。</li>
+</ul>
+<ul>
+<li><p><strong>General time zone</strong>: 如果时区有名称，则将它们解释为 text。对于表示 GMT 偏移值的时区，使用以下语法：</p>
+<pre><code>GMTOffsetTimeZone:
+        GMT Sign Hours : Minutes
+Sign: one of
+        + -
+Hours:
+        Digit
+        Digit Digit
+Minutes:
+        Digit Digit
+Digit: one of
+        0 1 2 3 4 5 6 7 8 9
+</code></pre><p>  Hours 必须在 0 到 23 之间，Minutes 必须在 00 到 59 之间。格式是与语言环境无关的，并且数字必须取自 Unicode 标准的 Basic Latin 块。</p>
+<p>  对于解析来说，RFC 822 time zones 也是可接受的。</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>RFC 822 time zone</strong>: 对于格式化来说，使用 RFC 822 4-digit 时区格式：</p>
+<pre><code>RFC822TimeZone:
+        Sign TwoDigitHours Minutes
+TwoDigitHours:
+        Digit Digit
+</code></pre><p>  TwoDigitHours 必须在 00 和 23 之间。其他定义请参阅 general time zones。</p>
+<p>  对于解析来说，general time zones 也是可接受的。 </p>
+</li>
+</ul>
+<p>SimpleDateFormat 还支持本地化日期和时间模式 字符串。在这些字符串中，以上所述的模式字母可以用其他与语言环境有关的模式字母来替换。SimpleDateFormat 不处理除模式字母之外的文本本地化；而由类的客户端来处理。 </p>
+<h2 id="常用的方法示例"><a href="#常用的方法示例" class="headerlink" title="常用的方法示例"></a>常用的方法示例</h2><ul>
+<li>日期及时间的加减计算</li>
+<li>日期转字符串</li>
+<li>字符串转日期</li>
+<li>日期相关其他信息（星期，一年的第几天…）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.text.ParseException;</div><div class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</div><div class="line"><span class="keyword">import</span> java.util.Calendar;</div><div class="line"><span class="keyword">import</span> java.util.Date;</div><div class="line"><span class="keyword">import</span> java.util.Locale;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by caget on 2017/12/5.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Datetime</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParseException </span>&#123;</div><div class="line">        </div><div class="line">        <span class="comment">//字符串转Date</span></div><div class="line">        String time=<span class="string">"2017/1/1 22:23:11"</span>;</div><div class="line">        SimpleDateFormat sdf=<span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy/MM/dd HH:mm:ss"</span>);<span class="comment">//注意月份和分钟的大小写</span></div><div class="line">        Date date=sdf.parse(time);<span class="comment">//根据模式转换为Date类型，会抛出ParseException</span></div><div class="line">        </div><div class="line">        <span class="comment">//Date转Calendar类</span></div><div class="line">        Calendar c= Calendar.getInstance(Locale.ENGLISH);<span class="comment">//使用静态方法得到默认实例</span></div><div class="line">        c.setTime(date);<span class="comment">//转换为Calendar类型进行日期相关操作</span></div><div class="line">        </div><div class="line">        <span class="comment">//Calendar转Date</span></div><div class="line">        SimpleDateFormat sdf2=<span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd E HH:mm:ss"</span>, Locale.ENGLISH);</div><div class="line">        Date date1=c.getTime();<span class="comment">//与date相同</span></div><div class="line">        <span class="comment">//Date再转字符串</span></div><div class="line">        String str_date1=sdf2.format(date1);</div><div class="line">        System.out.println(str_date1+</div><div class="line">                <span class="string">"\r\n weekday:"</span>+c.get(Calendar.DAY_OF_WEEK)+ <span class="comment">//周日是第一天</span></div><div class="line">                <span class="string">"\r\n days in year: "</span>+c.get(Calendar.DAY_OF_YEAR)+</div><div class="line">                <span class="string">"\r\n week in year: "</span>+c.get(Calendar.WEEK_OF_YEAR)+</div><div class="line">                <span class="string">"\r\n week in month: "</span>+c.get(Calendar.WEEK_OF_MONTH));</div><div class="line">        </div><div class="line">        <span class="comment">//日期加减，比较等操作</span></div><div class="line">        c.add(Calendar.DATE,<span class="number">2</span>);</div><div class="line">        c.add(Calendar.MINUTE,<span class="number">1</span>);</div><div class="line">        System.out.println(sdf2.format(c.getTime())+</div><div class="line">                <span class="string">"\r\n weekday:"</span>+c.get(Calendar.DAY_OF_WEEK)+</div><div class="line">                <span class="string">"\r\n days in year: "</span>+c.get(Calendar.DAY_OF_YEAR)+</div><div class="line">                <span class="string">"\r\n week in year: "</span>+c.get(Calendar.WEEK_OF_YEAR)+</div><div class="line">                <span class="string">"\r\n week in month: "</span>+c.get(Calendar.WEEK_OF_MONTH));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>输出结果</strong>：</p>
+<pre><code>2017-01-01 Sun 22:23:11
+ weekday:1
+ days in year: 1
+ week in year: 1
+ week in month: 1
+2017-01-03 Tue 22:24:11
+ weekday:3
+ days in year: 3
+ week in year: 1
+ week in month: 1
+</code></pre><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>Java API 文档。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;Java中时间日期的操作&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="JAVA" scheme="http://yoursite.com/categories/JAVA/"/>
+    
+    
+      <category term="JAVA" scheme="http://yoursite.com/tags/JAVA/"/>
+    
+  </entry>
   
   <entry>
     <title>机器学习缺失值处理方法汇总</title>
@@ -62,44 +257,10 @@
   </entry>
   
   <entry>
-    <title>Kali中文设置</title>
-    <link href="http://yoursite.com/2017/05/20/Kali%E4%B8%AD%E6%96%87%E8%AE%BE%E7%BD%AE/"/>
-    <id>http://yoursite.com/2017/05/20/Kali中文设置/</id>
-    <published>2017-05-20T12:01:02.945Z</published>
-    <updated>2017-05-20T12:06:33.444Z</updated>
-    
-    <content type="html"><![CDATA[<p>第一步：leafpad /etc/apt/sources.list</p>
-<p>修改sources.list文件(etc/apt目录下）在下方加几个软件源</p>
-<p>#官方源<br>deb <a href="http://http.kali.org/kali" target="_blank" rel="external">http://http.kali.org/kali</a> kali main non-free contrib<br>deb-src <a href="http://http.kali.org/kali" target="_blank" rel="external">http://http.kali.org/kali</a> kali main non-free contrib<br>deb <a href="http://security.kali.org/kali-security" target="_blank" rel="external">http://security.kali.org/kali-security</a> kali/updates main contrib non-free</p>
-<p>#中科大kali源<br>deb <a href="http://mirrors.ustc.edu.cn/kali" target="_blank" rel="external">http://mirrors.ustc.edu.cn/kali</a> kali main non-free contrib<br>deb-src <a href="http://mirrors.ustc.edu.cn/kali" target="_blank" rel="external">http://mirrors.ustc.edu.cn/kali</a> kali main non-free contrib<br>deb <a href="http://mirrors.ustc.edu.cn/kali-security" target="_blank" rel="external">http://mirrors.ustc.edu.cn/kali-security</a> kali/updates main contrib non-free</p>
-<p>#阿里云kali源<br>deb <a href="http://mirrors.aliyun.com/kali" target="_blank" rel="external">http://mirrors.aliyun.com/kali</a> kali main non-free contrib<br>deb-src <a href="http://mirrors.aliyun.com/kali" target="_blank" rel="external">http://mirrors.aliyun.com/kali</a> kali main non-free contrib<br>deb <a href="http://mirrors.aliyun.com/kali-security" target="_blank" rel="external">http://mirrors.aliyun.com/kali-security</a> kali/updates main contrib non-free</p>
-<p>保存。</p>
-<p>第二步： 解决依赖关系。 apt-get install -f</p>
-<p>第三步：apt-get update<br>apt-get upgrade</p>
-<p>第四步：安装输入法. apt-get install ibus ibus-pinyin</p>
-<p>第六步：重启.reboot</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;第一步：leafpad /etc/apt/sources.list&lt;/p&gt;
-&lt;p&gt;修改sources.list文件(etc/apt目录下）在下方加几个软件源&lt;/p&gt;
-&lt;p&gt;#官方源&lt;br&gt;deb &lt;a href=&quot;http://http.kali.org/kali&quot; tar
-    
-    </summary>
-    
-      <category term="Other" scheme="http://yoursite.com/categories/Other/"/>
-    
-    
-      <category term="Other" scheme="http://yoursite.com/tags/Other/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Java集合框架的学习（续）</title>
-    <link href="http://yoursite.com/2016/11/09/%E9%9B%86%E5%90%882/"/>
-    <id>http://yoursite.com/2016/11/09/集合2/</id>
-    <published>2016-11-09T15:53:51.306Z</published>
+    <link href="http://yoursite.com/2017/05/20/%E9%9B%86%E5%90%882/"/>
+    <id>http://yoursite.com/2017/05/20/集合2/</id>
+    <published>2017-05-20T12:01:02.972Z</published>
     <updated>2016-11-11T09:34:52.725Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Map集合"><a href="#Map集合" class="headerlink" title="Map集合"></a>Map集合</h2><p>Map：一次添加一对元素。Collection 一次添加一个元素。</p>
@@ -192,71 +353,10 @@
   </entry>
   
   <entry>
-    <title>Java 泛型（Generic）学习</title>
-    <link href="http://yoursite.com/2016/11/08/Java%E6%B3%9B%E5%9E%8B%E5%AD%A6%E4%B9%A0/"/>
-    <id>http://yoursite.com/2016/11/08/Java泛型学习/</id>
-    <published>2016-11-08T15:46:54.275Z</published>
-    <updated>2016-11-11T09:37:12.264Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="什么是泛型"><a href="#什么是泛型" class="headerlink" title="什么是泛型"></a>什么是泛型</h2><p>泛型（Generic）：JDK以后出现的新特性。用于解决安全问题，是一个安全机制。</p>
-<h3 id="使用泛型的好处"><a href="#使用泛型的好处" class="headerlink" title="使用泛型的好处"></a>使用泛型的好处</h3><ol>
-<li>将运行时期出现的问题ClassCastException（类型转换错误）转移到了编译时期，方便于程序员解决问题。</li>
-<li>避免了强制转换的麻烦</li>
-</ol>
-<a id="more"></a>
-<h3 id="泛型格式"><a href="#泛型格式" class="headerlink" title="泛型格式"></a>泛型格式</h3><p>&lt;&gt;定义操作的引用数据类型</p>
-<h3 id="为什么要写泛型？"><a href="#为什么要写泛型？" class="headerlink" title="为什么要写泛型？"></a>为什么要写泛型？</h3><blockquote>
-<p>通常在集合中泛型很常见，只要有&lt;&gt;就要定义泛型。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ArrayList&lt;String&gt;a1=<span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">a1.add(<span class="string">"asdasx"</span>);</div><div class="line">a1.add(<span class="string">"asdasxss"</span>);</div><div class="line">a1.add(<span class="string">"asdasxxxx"</span>);</div><div class="line">a1.add(<span class="number">4</span>);<span class="comment">//相当于a1.add(new Integer(4));ClassCastException错误</span></div><div class="line">Iterator&lt;String&gt;it=a1.iterator();</div></pre></td></tr></table></figure>
-<p><em>对之前集合讲解的代码优化//Compareble也有泛型</em><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Iterator;</div><div class="line"><span class="keyword">import</span> java.util.TreeSet;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeSetTest</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComparatorByLength</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">String</span>&gt; </span>&#123;</div><div class="line">	</div><div class="line">		<span class="meta">@Override</span></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String s1, String s2)</span> </span>&#123;</div><div class="line">			<span class="keyword">int</span> temp = s1.length()-s2.length();</div><div class="line">			<span class="keyword">return</span> temp==<span class="number">0</span>? s1.compareTo(s2): temp;</div><div class="line">			<span class="comment">//基础类型都有compareTo方法</span></div><div class="line">		&#125;</div><div class="line">	</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"></div><div class="line">		TreeSet&lt;String&gt; ts = <span class="keyword">new</span> TreeSet&lt;String&gt;(<span class="keyword">new</span> ComparatorByLength());</div><div class="line"></div><div class="line">		ts.add(<span class="string">"aaaaa"</span>);</div><div class="line">		ts.add(<span class="string">"zz"</span>);</div><div class="line">		ts.add(<span class="string">"nbaq"</span>);</div><div class="line">		ts.add(<span class="string">"cba"</span>);</div><div class="line">		ts.add(<span class="string">"abc"</span>);</div><div class="line">		</div><div class="line">		Iterator&lt;String&gt; it = ts.iterator();</div><div class="line">		</div><div class="line">		<span class="keyword">while</span>(it.hasNext())&#123;</div><div class="line">			System.out.println(it.next());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h2><p>当类中操作的引用类型不确定时<br>早期定义Object来完成扩展，现在定义泛型完成扩展<br>强转错误发生在编译时期更安全。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">public class Tool &#123;</div><div class="line"></div><div class="line">	private Object object;</div><div class="line"></div><div class="line">	public Object getObject() &#123;</div><div class="line">		return object;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setObject(Object object) &#123;</div><div class="line">		this.object = object;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;//JDK1.5以前定义Object来完成扩展</div><div class="line">*/</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span>&lt;<span class="title">T</span>&gt;</span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">private</span> T t;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setObjects</span><span class="params">(T t)</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">this</span>.t=t;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getObjects</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">return</span> t;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>泛型类定义的泛型，在整个类中有效，如果被方法使用，那么泛型类的对象明确要操作的具体类型后，所有要操作的类型已经固定了。<br>为了让不同的方法可以操作不同的类型，而且类型还不确定，旧可以将泛型定义在方法上。</p>
-<h2 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h2><blockquote>
-<p>public <t> void 方法名</t></p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">private</span> T t;</div><div class="line">	<span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">(T t)</span></span></div><div class="line">	&#123;</div><div class="line">		system.out.println(t);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">public</span> &lt;E&gt; <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(E e)</span></span></div><div class="line">	&#123;</div><div class="line">		system.out.println(e);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="特殊之处"><a href="#特殊之处" class="headerlink" title="特殊之处"></a>特殊之处</h3><ol>
-<li>静态方法不可以访问类上定义的泛型。</li>
-<li>静态类中也可以定义静态方法解决泛型类的局限性</li>
-<li>如果静态方法操作的引用数据类型不确定，可以将泛型定义在方法上。</li>
-<li>&lt;&gt;泛型放到返回值类型（int，void）的前面，修饰符（public，static）的后面<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span>&lt;<span class="title">T</span>&gt;</span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">private</span> T t;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(T t)</span></span></div><div class="line">	&#123;</div><div class="line">		system.out.println(t);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">public</span> &lt;E&gt; <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(E e)</span></span></div><div class="line">	&#123;</div><div class="line">		system.out.println(e);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> &lt;W&gt; <span class="function"><span class="keyword">void</span> <span class="title">method</span><span class="params">(W w)</span></span></div><div class="line">	&#123;</div><div class="line">		system.out.println(w);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="泛型定义在接口上-不常见"><a href="#泛型定义在接口上-不常见" class="headerlink" title="泛型定义在接口上//不常见"></a>泛型定义在接口上//不常见</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">inteface Inter&lt;T&gt;</div><div class="line">&#123;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">(T t)</span></span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//实现指定类型</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">InterImpl</span> <span class="title">implement</span> <span class="title">Inter</span>&lt;<span class="title">String</span>&gt;</span></div><div class="line">&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(String )</span></span></div><div class="line">	&#123;</div><div class="line">		system.out.println(str);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//实现泛型类型</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">InterImpl</span>&lt;<span class="title">T</span>&gt; <span class="title">implement</span> <span class="title">Inter</span>&lt;<span class="title">T</span>&gt;</span></div><div class="line">&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(T t)</span></span></div><div class="line">	&#123;</div><div class="line">		system.out.println(t);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="泛型的高级应用"><a href="#泛型的高级应用" class="headerlink" title="泛型的高级应用"></a>泛型的高级应用</h2><blockquote>
-<p>有扩展性就有局限性</p>
-</blockquote>
-<h3 id="lt-gt-接收所有类型对象"><a href="#lt-gt-接收所有类型对象" class="headerlink" title="&lt;?&gt;:接收所有类型对象"></a>&lt;?&gt;:接收所有类型对象</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printCollection</span><span class="params">(Collection&lt;?&gt; al)</span> </span>&#123;	</div><div class="line">	</div><div class="line">		Iterator&lt;?&gt; it = al.iterator();</div><div class="line">		<span class="keyword">while</span>(it.hasNext())&#123;</div><div class="line">		T str = it.next();</div><div class="line">		System.out.println(str);</div><div class="line">		System.out.println(it.next().toString());</div><div class="line">		<span class="comment">//it.next().length()不能打印，只能打印共有的父类方法</span></div><div class="line">		<span class="comment">//扩展的局限性体现在这</span></div><div class="line">		&#125;</div></pre></td></tr></table></figure>
-<h3 id="lt-extends-E-gt-接收E类型或者E的子类型对象。上限！（用处较多）"><a href="#lt-extends-E-gt-接收E类型或者E的子类型对象。上限！（用处较多）" class="headerlink" title="&lt;? extends E&gt;:接收E类型或者E的子类型对象。上限！（用处较多）"></a>&lt;? extends E&gt;:接收E类型或者E的子类型对象。上限！（用处较多）</h3><blockquote>
-<p>一般在存储元素的时候都是用上限，因为这样取出都是按照上限类型来运算的。不会出现类型安全隐患。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printCollection</span><span class="params">(Collection&lt;? extends Person&gt; al)</span> </span></div><div class="line">&#123;</div><div class="line">		Iterator&lt;? extends Person&gt; it = al.iterator();<span class="comment">//接收Person及其子类</span></div><div class="line">		<span class="keyword">while</span>(it.hasNext())</div><div class="line">		&#123;</div><div class="line"><span class="comment">//			T str = it.next();不行，扩展的局限性</span></div><div class="line"><span class="comment">//			System.out.println(str);</span></div><div class="line"><span class="comment">//			System.out.println(it.next().toString());</span></div><div class="line">			Person p = it.next();</div><div class="line">			System.out.println(p.getName()+<span class="string">":"</span>+p.getAge());</div><div class="line">		&#125;</div><div class="line">&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printCollection</span><span class="params">(Collection&lt;? <span class="keyword">super</span> Student&gt; al)</span></span></div><div class="line">	&#123;</div><div class="line">		Iterator&lt;? <span class="keyword">super</span> Student&gt; it = al.iterator();</div><div class="line">		</div><div class="line">		<span class="keyword">while</span>(it.hasNext())</div><div class="line">		&#123;</div><div class="line">			System.out.println(it.next());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="lt-super-E-gt-：接收E类型或者E的父类型对象。下限！（用处较少）"><a href="#lt-super-E-gt-：接收E类型或者E的父类型对象。下限！（用处较少）" class="headerlink" title="&lt;? super E&gt;：接收E类型或者E的父类型对象。下限！（用处较少）"></a>&lt;? super E&gt;：接收E类型或者E的父类型对象。下限！（用处较少）</h3><p>什么时候用下限呢？通常对集合中的元素进行取出操作时，可以是用下限。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">		<span class="comment">/*Student,Worker均为Person的子类*/</span></div><div class="line">		TreeSet&lt;Person&gt; al1 = <span class="keyword">new</span> TreeSet&lt;Person&gt;(<span class="keyword">new</span> CompByName());</div><div class="line">		</div><div class="line">		al1.add(<span class="keyword">new</span> Person(<span class="string">"abc4"</span>,<span class="number">34</span>));</div><div class="line">		al1.add(<span class="keyword">new</span> Person(<span class="string">"abc1"</span>,<span class="number">30</span>));</div><div class="line">		al1.add(<span class="keyword">new</span> Person(<span class="string">"abc2"</span>,<span class="number">38</span>));</div><div class="line">		</div><div class="line">		TreeSet&lt;Student&gt; al2 = <span class="keyword">new</span> TreeSet&lt;Student&gt;(<span class="keyword">new</span> CompByName());</div><div class="line">		</div><div class="line">		al2.add(<span class="keyword">new</span> Student(<span class="string">"stu1"</span>,<span class="number">11</span>));</div><div class="line">		al2.add(<span class="keyword">new</span> Student(<span class="string">"stu7"</span>,<span class="number">20</span>));</div><div class="line">		al2.add(<span class="keyword">new</span> Student(<span class="string">"stu2"</span>,<span class="number">22</span>));</div><div class="line">		</div><div class="line">		</div><div class="line">		TreeSet&lt;Worker&gt; al3 = <span class="keyword">new</span> TreeSet&lt;Worker&gt;(<span class="keyword">new</span> CompByName());</div><div class="line">		</div><div class="line">		al3.add(<span class="keyword">new</span> Worker(<span class="string">"stu1"</span>,<span class="number">11</span>));</div><div class="line">		al3.add(<span class="keyword">new</span> Worker(<span class="string">"stu2"</span>,<span class="number">22</span>));</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CompByName</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Person</span>&gt;//&lt;? <span class="title">super</span> <span class="title">E</span>&gt;</span></div><div class="line">&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</div><div class="line">		</div><div class="line">		<span class="keyword">int</span> temp = o1.getName().compareTo(o2.getName());</div><div class="line">		</div><div class="line">		<span class="keyword">return</span> temp==<span class="number">0</span>? o1.getAge()-o2.getAge():temp;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;什么是泛型&quot;&gt;&lt;a href=&quot;#什么是泛型&quot; class=&quot;headerlink&quot; title=&quot;什么是泛型&quot;&gt;&lt;/a&gt;什么是泛型&lt;/h2&gt;&lt;p&gt;泛型（Generic）：JDK以后出现的新特性。用于解决安全问题，是一个安全机制。&lt;/p&gt;
-&lt;h3 id=&quot;使用泛型的好处&quot;&gt;&lt;a href=&quot;#使用泛型的好处&quot; class=&quot;headerlink&quot; title=&quot;使用泛型的好处&quot;&gt;&lt;/a&gt;使用泛型的好处&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;将运行时期出现的问题ClassCastException（类型转换错误）转移到了编译时期，方便于程序员解决问题。&lt;/li&gt;
-&lt;li&gt;避免了强制转换的麻烦&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-      <category term="JAVA" scheme="http://yoursite.com/categories/JAVA/"/>
-    
-    
-      <category term="JAVA" scheme="http://yoursite.com/tags/JAVA/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Java集合框架的学习</title>
-    <link href="http://yoursite.com/2016/11/06/%E9%9B%86%E5%90%88/"/>
-    <id>http://yoursite.com/2016/11/06/集合/</id>
-    <published>2016-11-06T09:18:33.113Z</published>
+    <link href="http://yoursite.com/2017/05/20/%E9%9B%86%E5%90%88/"/>
+    <id>http://yoursite.com/2017/05/20/集合/</id>
+    <published>2017-05-20T12:01:02.965Z</published>
     <updated>2016-11-08T14:29:36.946Z</updated>
     
     <content type="html"><![CDATA[<h1 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h1><ul>
@@ -339,9 +439,9 @@
   
   <entry>
     <title>Java String类深入理解</title>
-    <link href="http://yoursite.com/2016/11/03/String%E7%B1%BB%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/"/>
-    <id>http://yoursite.com/2016/11/03/String类深入理解/</id>
-    <published>2016-11-03T10:20:06.408Z</published>
+    <link href="http://yoursite.com/2017/05/20/String%E7%B1%BB%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/"/>
+    <id>http://yoursite.com/2017/05/20/String类深入理解/</id>
+    <published>2017-05-20T12:01:02.957Z</published>
     <updated>2016-11-08T14:29:36.945Z</updated>
     
     <content type="html"><![CDATA[<p>在这里主要说一些String类的细节，易忽略的点，以及面试题</p>
@@ -373,25 +473,142 @@
   </entry>
   
   <entry>
-    <title>Java单例设计模式</title>
-    <link href="http://yoursite.com/2016/11/01/Java%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2016/11/01/Java单例设计模式/</id>
-    <published>2016-11-01T06:47:51.744Z</published>
-    <updated>2016-11-08T14:30:03.930Z</updated>
+    <title>如何使用Markdown优雅的写博客</title>
+    <link href="http://yoursite.com/2017/05/20/MarkdownPad/"/>
+    <id>http://yoursite.com/2017/05/20/MarkdownPad/</id>
+    <published>2017-05-20T12:01:02.951Z</published>
+    <updated>2016-11-01T08:30:08.637Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>单例设计模式 懒汉式/饿汉式</p>
-</blockquote>
+    <content type="html"><![CDATA[<h3 id="基于Windows10-MarkdownPad2"><a href="#基于Windows10-MarkdownPad2" class="headerlink" title="基于Windows10+MarkdownPad2"></a>基于Windows10+MarkdownPad2</h3><ul>
+<li>首先登陆官网下载：<a href="http://markdownpad.com/" title="MarkdownPad" target="_blank" rel="external">http://markdownpad.com/</a>    选择windows系统</li>
+</ul>
 <a id="more"></a>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Single</span>//懒汉式的（多线程）安全定义方法（面试常考）</span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Single s=<span class="keyword">null</span>;</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Single</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span>(a==<span class="keyword">null</span>)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">synchronized</span>(Single.class)</div><div class="line">			&#123;</div><div class="line">				<span class="keyword">if</span>(s==<span class="keyword">null</span>)</div><div class="line">					s=<span class="keyword">new</span> Single();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> s;</div><div class="line">	&#125;</div><div class="line">&#125;<span class="comment">//懒汉式用于延迟加载</span></div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Single</span>//饿汉式（开发中常用）</span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Single s=<span class="keyword">new</span> Single();</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">return</span> s;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><img src="http://i.imgur.com/uakFL31.png" alt=""></li>
+<li>安装后打开，会提示使用，购买注册码，输入注册码，我们点击输入注册码（enter…)<img src="http://i.imgur.com/v6zsZLf.png" alt=""></li>
+<li>输入邮箱：</li>
+</ul>
+<blockquote>
+<p>Soar360@live.com</p>
+</blockquote>
+<ul>
+<li>授权密钥：</li>
+</ul>
+<blockquote>
+<p>GBPduHjWfJU1mZqcPM3BikjYKF6xKhlKIys3i1MU2eJHqWGImDHzWdD6xhMNLGVpbP2M5SN6bnxn2kSE8qHqNY5QaaRxmO3YSMHxlv2EYpjdwLcPwfeTG7kUdnhKE0vVy4RidP6Y2wZ0q74f47fzsZo45JE2hfQBFi2O9Jldjp1mW8HUpTtLA2a5/sQytXJUQl/QKO0jUQY4pa5CCx20sV1ClOTZtAGngSOJtIOFXK599sBr5aIEFyH0K7H4BoNMiiDMnxt1rD8Vb/ikJdhGMMQr0R4B+L3nWU97eaVPTRKfWGDE8/eAgKzpGwrQQoDh+nzX1xoVQ8NAuH+s4UcSeQ==</p>
+</blockquote>
+<ul>
+<li><p>地址参见：<br><a href="http://w3cboy.com/post/2014/10/MarkdownPad%E6%B3%A8%E5%86%8C%E7%A0%81/" target="_blank" rel="external">http://w3cboy.com/post/2014/10/MarkdownPad%E6%B3%A8%E5%86%8C%E7%A0%81/</a></p>
+</li>
+<li><p>接下来就是配置了。首先Tools&gt;Options&gt;Editor里设置为中文 <img src="http://i.imgur.com/zY7qrYQ.png" alt=""></p>
+</li>
+<li>然后点击Markdown markdown处理器&gt;github风格处理器（在线时可以使语法高亮）<img src="http://i.imgur.com/PZCLrkC.png" alt=""></li>
+<li>最后保存并关闭就大功告成了！</li>
+<li>点击标题栏的按钮可以生成相应的语法格式，这里多说一点：代码块要实现语法高亮见以下图片：<img src="http://static.oschina.net/uploads/space/2013/0313/141201_mWZs_570724.png" alt=""></li>
+</ul>
+<hr>
+<h2 id="—-EOF—"><a href="#—-EOF—" class="headerlink" title="—-EOF—-"></a>—-EOF—-</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;基于Windows10-MarkdownPad2&quot;&gt;&lt;a href=&quot;#基于Windows10-MarkdownPad2&quot; class=&quot;headerlink&quot; title=&quot;基于Windows10+MarkdownPad2&quot;&gt;&lt;/a&gt;基于Windows10+MarkdownPad2&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;首先登陆官网下载：&lt;a href=&quot;http://markdownpad.com/&quot; title=&quot;MarkdownPad&quot;&gt;http://markdownpad.com/&lt;/a&gt;    选择windows系统&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Other" scheme="http://yoursite.com/categories/Other/"/>
+    
+    
+      <category term="Other" scheme="http://yoursite.com/tags/Other/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kali中文设置</title>
+    <link href="http://yoursite.com/2017/05/20/Kali%E4%B8%AD%E6%96%87%E8%AE%BE%E7%BD%AE/"/>
+    <id>http://yoursite.com/2017/05/20/Kali中文设置/</id>
+    <published>2017-05-20T12:01:02.945Z</published>
+    <updated>2017-05-20T12:06:33.444Z</updated>
+    
+    <content type="html"><![CDATA[<p>第一步：leafpad /etc/apt/sources.list</p>
+<p>修改sources.list文件(etc/apt目录下）在下方加几个软件源</p>
+<p>#官方源<br>deb <a href="http://http.kali.org/kali" target="_blank" rel="external">http://http.kali.org/kali</a> kali main non-free contrib<br>deb-src <a href="http://http.kali.org/kali" target="_blank" rel="external">http://http.kali.org/kali</a> kali main non-free contrib<br>deb <a href="http://security.kali.org/kali-security" target="_blank" rel="external">http://security.kali.org/kali-security</a> kali/updates main contrib non-free</p>
+<p>#中科大kali源<br>deb <a href="http://mirrors.ustc.edu.cn/kali" target="_blank" rel="external">http://mirrors.ustc.edu.cn/kali</a> kali main non-free contrib<br>deb-src <a href="http://mirrors.ustc.edu.cn/kali" target="_blank" rel="external">http://mirrors.ustc.edu.cn/kali</a> kali main non-free contrib<br>deb <a href="http://mirrors.ustc.edu.cn/kali-security" target="_blank" rel="external">http://mirrors.ustc.edu.cn/kali-security</a> kali/updates main contrib non-free</p>
+<p>#阿里云kali源<br>deb <a href="http://mirrors.aliyun.com/kali" target="_blank" rel="external">http://mirrors.aliyun.com/kali</a> kali main non-free contrib<br>deb-src <a href="http://mirrors.aliyun.com/kali" target="_blank" rel="external">http://mirrors.aliyun.com/kali</a> kali main non-free contrib<br>deb <a href="http://mirrors.aliyun.com/kali-security" target="_blank" rel="external">http://mirrors.aliyun.com/kali-security</a> kali/updates main contrib non-free</p>
+<p>保存。</p>
+<p>第二步： 解决依赖关系。 apt-get install -f</p>
+<p>第三步：apt-get update<br>apt-get upgrade</p>
+<p>第四步：安装输入法. apt-get install ibus ibus-pinyin</p>
+<p>第六步：重启.reboot</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;单例设计模式 懒汉式/饿汉式&lt;/p&gt;
-&lt;/blockquote&gt;
+      &lt;p&gt;第一步：leafpad /etc/apt/sources.list&lt;/p&gt;
+&lt;p&gt;修改sources.list文件(etc/apt目录下）在下方加几个软件源&lt;/p&gt;
+&lt;p&gt;#官方源&lt;br&gt;deb &lt;a href=&quot;http://http.kali.org/kali&quot; tar
+    
+    </summary>
+    
+      <category term="Other" scheme="http://yoursite.com/categories/Other/"/>
+    
+    
+      <category term="Other" scheme="http://yoursite.com/tags/Other/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java 泛型（Generic）学习</title>
+    <link href="http://yoursite.com/2017/05/20/Java%E6%B3%9B%E5%9E%8B%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://yoursite.com/2017/05/20/Java泛型学习/</id>
+    <published>2017-05-20T12:01:02.938Z</published>
+    <updated>2016-11-11T09:37:12.264Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="什么是泛型"><a href="#什么是泛型" class="headerlink" title="什么是泛型"></a>什么是泛型</h2><p>泛型（Generic）：JDK以后出现的新特性。用于解决安全问题，是一个安全机制。</p>
+<h3 id="使用泛型的好处"><a href="#使用泛型的好处" class="headerlink" title="使用泛型的好处"></a>使用泛型的好处</h3><ol>
+<li>将运行时期出现的问题ClassCastException（类型转换错误）转移到了编译时期，方便于程序员解决问题。</li>
+<li>避免了强制转换的麻烦</li>
+</ol>
+<a id="more"></a>
+<h3 id="泛型格式"><a href="#泛型格式" class="headerlink" title="泛型格式"></a>泛型格式</h3><p>&lt;&gt;定义操作的引用数据类型</p>
+<h3 id="为什么要写泛型？"><a href="#为什么要写泛型？" class="headerlink" title="为什么要写泛型？"></a>为什么要写泛型？</h3><blockquote>
+<p>通常在集合中泛型很常见，只要有&lt;&gt;就要定义泛型。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ArrayList&lt;String&gt;a1=<span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">a1.add(<span class="string">"asdasx"</span>);</div><div class="line">a1.add(<span class="string">"asdasxss"</span>);</div><div class="line">a1.add(<span class="string">"asdasxxxx"</span>);</div><div class="line">a1.add(<span class="number">4</span>);<span class="comment">//相当于a1.add(new Integer(4));ClassCastException错误</span></div><div class="line">Iterator&lt;String&gt;it=a1.iterator();</div></pre></td></tr></table></figure>
+<p><em>对之前集合讲解的代码优化//Compareble也有泛型</em><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Iterator;</div><div class="line"><span class="keyword">import</span> java.util.TreeSet;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeSetTest</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComparatorByLength</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">String</span>&gt; </span>&#123;</div><div class="line">	</div><div class="line">		<span class="meta">@Override</span></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String s1, String s2)</span> </span>&#123;</div><div class="line">			<span class="keyword">int</span> temp = s1.length()-s2.length();</div><div class="line">			<span class="keyword">return</span> temp==<span class="number">0</span>? s1.compareTo(s2): temp;</div><div class="line">			<span class="comment">//基础类型都有compareTo方法</span></div><div class="line">		&#125;</div><div class="line">	</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"></div><div class="line">		TreeSet&lt;String&gt; ts = <span class="keyword">new</span> TreeSet&lt;String&gt;(<span class="keyword">new</span> ComparatorByLength());</div><div class="line"></div><div class="line">		ts.add(<span class="string">"aaaaa"</span>);</div><div class="line">		ts.add(<span class="string">"zz"</span>);</div><div class="line">		ts.add(<span class="string">"nbaq"</span>);</div><div class="line">		ts.add(<span class="string">"cba"</span>);</div><div class="line">		ts.add(<span class="string">"abc"</span>);</div><div class="line">		</div><div class="line">		Iterator&lt;String&gt; it = ts.iterator();</div><div class="line">		</div><div class="line">		<span class="keyword">while</span>(it.hasNext())&#123;</div><div class="line">			System.out.println(it.next());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h2><p>当类中操作的引用类型不确定时<br>早期定义Object来完成扩展，现在定义泛型完成扩展<br>强转错误发生在编译时期更安全。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">public class Tool &#123;</div><div class="line"></div><div class="line">	private Object object;</div><div class="line"></div><div class="line">	public Object getObject() &#123;</div><div class="line">		return object;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setObject(Object object) &#123;</div><div class="line">		this.object = object;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;//JDK1.5以前定义Object来完成扩展</div><div class="line">*/</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span>&lt;<span class="title">T</span>&gt;</span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">private</span> T t;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setObjects</span><span class="params">(T t)</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">this</span>.t=t;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getObjects</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">return</span> t;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>泛型类定义的泛型，在整个类中有效，如果被方法使用，那么泛型类的对象明确要操作的具体类型后，所有要操作的类型已经固定了。<br>为了让不同的方法可以操作不同的类型，而且类型还不确定，旧可以将泛型定义在方法上。</p>
+<h2 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h2><blockquote>
+<p>public <t> void 方法名</t></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">private</span> T t;</div><div class="line">	<span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">(T t)</span></span></div><div class="line">	&#123;</div><div class="line">		system.out.println(t);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">public</span> &lt;E&gt; <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(E e)</span></span></div><div class="line">	&#123;</div><div class="line">		system.out.println(e);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="特殊之处"><a href="#特殊之处" class="headerlink" title="特殊之处"></a>特殊之处</h3><ol>
+<li>静态方法不可以访问类上定义的泛型。</li>
+<li>静态类中也可以定义静态方法解决泛型类的局限性</li>
+<li>如果静态方法操作的引用数据类型不确定，可以将泛型定义在方法上。</li>
+<li>&lt;&gt;泛型放到返回值类型（int，void）的前面，修饰符（public，static）的后面<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span>&lt;<span class="title">T</span>&gt;</span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">private</span> T t;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(T t)</span></span></div><div class="line">	&#123;</div><div class="line">		system.out.println(t);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">public</span> &lt;E&gt; <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(E e)</span></span></div><div class="line">	&#123;</div><div class="line">		system.out.println(e);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> &lt;W&gt; <span class="function"><span class="keyword">void</span> <span class="title">method</span><span class="params">(W w)</span></span></div><div class="line">	&#123;</div><div class="line">		system.out.println(w);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="泛型定义在接口上-不常见"><a href="#泛型定义在接口上-不常见" class="headerlink" title="泛型定义在接口上//不常见"></a>泛型定义在接口上//不常见</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">inteface Inter&lt;T&gt;</div><div class="line">&#123;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">(T t)</span></span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//实现指定类型</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">InterImpl</span> <span class="title">implement</span> <span class="title">Inter</span>&lt;<span class="title">String</span>&gt;</span></div><div class="line">&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(String )</span></span></div><div class="line">	&#123;</div><div class="line">		system.out.println(str);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//实现泛型类型</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">InterImpl</span>&lt;<span class="title">T</span>&gt; <span class="title">implement</span> <span class="title">Inter</span>&lt;<span class="title">T</span>&gt;</span></div><div class="line">&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(T t)</span></span></div><div class="line">	&#123;</div><div class="line">		system.out.println(t);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="泛型的高级应用"><a href="#泛型的高级应用" class="headerlink" title="泛型的高级应用"></a>泛型的高级应用</h2><blockquote>
+<p>有扩展性就有局限性</p>
+</blockquote>
+<h3 id="lt-gt-接收所有类型对象"><a href="#lt-gt-接收所有类型对象" class="headerlink" title="&lt;?&gt;:接收所有类型对象"></a>&lt;?&gt;:接收所有类型对象</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printCollection</span><span class="params">(Collection&lt;?&gt; al)</span> </span>&#123;	</div><div class="line">	</div><div class="line">		Iterator&lt;?&gt; it = al.iterator();</div><div class="line">		<span class="keyword">while</span>(it.hasNext())&#123;</div><div class="line">		T str = it.next();</div><div class="line">		System.out.println(str);</div><div class="line">		System.out.println(it.next().toString());</div><div class="line">		<span class="comment">//it.next().length()不能打印，只能打印共有的父类方法</span></div><div class="line">		<span class="comment">//扩展的局限性体现在这</span></div><div class="line">		&#125;</div></pre></td></tr></table></figure>
+<h3 id="lt-extends-E-gt-接收E类型或者E的子类型对象。上限！（用处较多）"><a href="#lt-extends-E-gt-接收E类型或者E的子类型对象。上限！（用处较多）" class="headerlink" title="&lt;? extends E&gt;:接收E类型或者E的子类型对象。上限！（用处较多）"></a>&lt;? extends E&gt;:接收E类型或者E的子类型对象。上限！（用处较多）</h3><blockquote>
+<p>一般在存储元素的时候都是用上限，因为这样取出都是按照上限类型来运算的。不会出现类型安全隐患。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printCollection</span><span class="params">(Collection&lt;? extends Person&gt; al)</span> </span></div><div class="line">&#123;</div><div class="line">		Iterator&lt;? extends Person&gt; it = al.iterator();<span class="comment">//接收Person及其子类</span></div><div class="line">		<span class="keyword">while</span>(it.hasNext())</div><div class="line">		&#123;</div><div class="line"><span class="comment">//			T str = it.next();不行，扩展的局限性</span></div><div class="line"><span class="comment">//			System.out.println(str);</span></div><div class="line"><span class="comment">//			System.out.println(it.next().toString());</span></div><div class="line">			Person p = it.next();</div><div class="line">			System.out.println(p.getName()+<span class="string">":"</span>+p.getAge());</div><div class="line">		&#125;</div><div class="line">&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printCollection</span><span class="params">(Collection&lt;? <span class="keyword">super</span> Student&gt; al)</span></span></div><div class="line">	&#123;</div><div class="line">		Iterator&lt;? <span class="keyword">super</span> Student&gt; it = al.iterator();</div><div class="line">		</div><div class="line">		<span class="keyword">while</span>(it.hasNext())</div><div class="line">		&#123;</div><div class="line">			System.out.println(it.next());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="lt-super-E-gt-：接收E类型或者E的父类型对象。下限！（用处较少）"><a href="#lt-super-E-gt-：接收E类型或者E的父类型对象。下限！（用处较少）" class="headerlink" title="&lt;? super E&gt;：接收E类型或者E的父类型对象。下限！（用处较少）"></a>&lt;? super E&gt;：接收E类型或者E的父类型对象。下限！（用处较少）</h3><p>什么时候用下限呢？通常对集合中的元素进行取出操作时，可以是用下限。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">		<span class="comment">/*Student,Worker均为Person的子类*/</span></div><div class="line">		TreeSet&lt;Person&gt; al1 = <span class="keyword">new</span> TreeSet&lt;Person&gt;(<span class="keyword">new</span> CompByName());</div><div class="line">		</div><div class="line">		al1.add(<span class="keyword">new</span> Person(<span class="string">"abc4"</span>,<span class="number">34</span>));</div><div class="line">		al1.add(<span class="keyword">new</span> Person(<span class="string">"abc1"</span>,<span class="number">30</span>));</div><div class="line">		al1.add(<span class="keyword">new</span> Person(<span class="string">"abc2"</span>,<span class="number">38</span>));</div><div class="line">		</div><div class="line">		TreeSet&lt;Student&gt; al2 = <span class="keyword">new</span> TreeSet&lt;Student&gt;(<span class="keyword">new</span> CompByName());</div><div class="line">		</div><div class="line">		al2.add(<span class="keyword">new</span> Student(<span class="string">"stu1"</span>,<span class="number">11</span>));</div><div class="line">		al2.add(<span class="keyword">new</span> Student(<span class="string">"stu7"</span>,<span class="number">20</span>));</div><div class="line">		al2.add(<span class="keyword">new</span> Student(<span class="string">"stu2"</span>,<span class="number">22</span>));</div><div class="line">		</div><div class="line">		</div><div class="line">		TreeSet&lt;Worker&gt; al3 = <span class="keyword">new</span> TreeSet&lt;Worker&gt;(<span class="keyword">new</span> CompByName());</div><div class="line">		</div><div class="line">		al3.add(<span class="keyword">new</span> Worker(<span class="string">"stu1"</span>,<span class="number">11</span>));</div><div class="line">		al3.add(<span class="keyword">new</span> Worker(<span class="string">"stu2"</span>,<span class="number">22</span>));</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CompByName</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Person</span>&gt;//&lt;? <span class="title">super</span> <span class="title">E</span>&gt;</span></div><div class="line">&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</div><div class="line">		</div><div class="line">		<span class="keyword">int</span> temp = o1.getName().compareTo(o2.getName());</div><div class="line">		</div><div class="line">		<span class="keyword">return</span> temp==<span class="number">0</span>? o1.getAge()-o2.getAge():temp;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;什么是泛型&quot;&gt;&lt;a href=&quot;#什么是泛型&quot; class=&quot;headerlink&quot; title=&quot;什么是泛型&quot;&gt;&lt;/a&gt;什么是泛型&lt;/h2&gt;&lt;p&gt;泛型（Generic）：JDK以后出现的新特性。用于解决安全问题，是一个安全机制。&lt;/p&gt;
+&lt;h3 id=&quot;使用泛型的好处&quot;&gt;&lt;a href=&quot;#使用泛型的好处&quot; class=&quot;headerlink&quot; title=&quot;使用泛型的好处&quot;&gt;&lt;/a&gt;使用泛型的好处&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;将运行时期出现的问题ClassCastException（类型转换错误）转移到了编译时期，方便于程序员解决问题。&lt;/li&gt;
+&lt;li&gt;避免了强制转换的麻烦&lt;/li&gt;
+&lt;/ol&gt;
     
     </summary>
     
@@ -404,9 +621,9 @@
   
   <entry>
     <title>Java多线程的学习</title>
-    <link href="http://yoursite.com/2016/11/01/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0/"/>
-    <id>http://yoursite.com/2016/11/01/Java多线程学习/</id>
-    <published>2016-11-01T06:13:21.281Z</published>
+    <link href="http://yoursite.com/2017/05/20/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://yoursite.com/2017/05/20/Java多线程学习/</id>
+    <published>2017-05-20T12:01:02.931Z</published>
     <updated>2016-11-08T14:17:03.633Z</updated>
     
     <content type="html"><![CDATA[<p>进程：正在执行的程序，有一个执行顺序，顺序是一个执行路径， 或者叫控制单元<br>线程：进程中独立的控制单元，至少有一个<br>JAVA vm 启动时有一个进程java.exe<br>至少有一个线程存在main函数中叫主线程。</p>
@@ -539,62 +756,40 @@
   </entry>
   
   <entry>
-    <title>如何使用Markdown优雅的写博客</title>
-    <link href="http://yoursite.com/2016/10/31/MarkdownPad/"/>
-    <id>http://yoursite.com/2016/10/31/MarkdownPad/</id>
-    <published>2016-10-31T09:38:55.846Z</published>
-    <updated>2016-11-01T08:30:08.637Z</updated>
+    <title>Java单例设计模式</title>
+    <link href="http://yoursite.com/2017/05/20/Java%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2017/05/20/Java单例设计模式/</id>
+    <published>2017-05-20T12:01:02.922Z</published>
+    <updated>2016-11-08T14:30:03.930Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="基于Windows10-MarkdownPad2"><a href="#基于Windows10-MarkdownPad2" class="headerlink" title="基于Windows10+MarkdownPad2"></a>基于Windows10+MarkdownPad2</h3><ul>
-<li>首先登陆官网下载：<a href="http://markdownpad.com/" title="MarkdownPad" target="_blank" rel="external">http://markdownpad.com/</a>    选择windows系统</li>
-</ul>
+    <content type="html"><![CDATA[<blockquote>
+<p>单例设计模式 懒汉式/饿汉式</p>
+</blockquote>
 <a id="more"></a>
-<ul>
-<li><img src="http://i.imgur.com/uakFL31.png" alt=""></li>
-<li>安装后打开，会提示使用，购买注册码，输入注册码，我们点击输入注册码（enter…)<img src="http://i.imgur.com/v6zsZLf.png" alt=""></li>
-<li>输入邮箱：</li>
-</ul>
-<blockquote>
-<p>Soar360@live.com</p>
-</blockquote>
-<ul>
-<li>授权密钥：</li>
-</ul>
-<blockquote>
-<p>GBPduHjWfJU1mZqcPM3BikjYKF6xKhlKIys3i1MU2eJHqWGImDHzWdD6xhMNLGVpbP2M5SN6bnxn2kSE8qHqNY5QaaRxmO3YSMHxlv2EYpjdwLcPwfeTG7kUdnhKE0vVy4RidP6Y2wZ0q74f47fzsZo45JE2hfQBFi2O9Jldjp1mW8HUpTtLA2a5/sQytXJUQl/QKO0jUQY4pa5CCx20sV1ClOTZtAGngSOJtIOFXK599sBr5aIEFyH0K7H4BoNMiiDMnxt1rD8Vb/ikJdhGMMQr0R4B+L3nWU97eaVPTRKfWGDE8/eAgKzpGwrQQoDh+nzX1xoVQ8NAuH+s4UcSeQ==</p>
-</blockquote>
-<ul>
-<li><p>地址参见：<br><a href="http://w3cboy.com/post/2014/10/MarkdownPad%E6%B3%A8%E5%86%8C%E7%A0%81/" target="_blank" rel="external">http://w3cboy.com/post/2014/10/MarkdownPad%E6%B3%A8%E5%86%8C%E7%A0%81/</a></p>
-</li>
-<li><p>接下来就是配置了。首先Tools&gt;Options&gt;Editor里设置为中文 <img src="http://i.imgur.com/zY7qrYQ.png" alt=""></p>
-</li>
-<li>然后点击Markdown markdown处理器&gt;github风格处理器（在线时可以使语法高亮）<img src="http://i.imgur.com/PZCLrkC.png" alt=""></li>
-<li>最后保存并关闭就大功告成了！</li>
-<li>点击标题栏的按钮可以生成相应的语法格式，这里多说一点：代码块要实现语法高亮见以下图片：<img src="http://static.oschina.net/uploads/space/2013/0313/141201_mWZs_570724.png" alt=""></li>
-</ul>
-<hr>
-<h2 id="—-EOF—"><a href="#—-EOF—" class="headerlink" title="—-EOF—-"></a>—-EOF—-</h2>]]></content>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Single</span>//懒汉式的（多线程）安全定义方法（面试常考）</span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Single s=<span class="keyword">null</span>;</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Single</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span>(a==<span class="keyword">null</span>)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">synchronized</span>(Single.class)</div><div class="line">			&#123;</div><div class="line">				<span class="keyword">if</span>(s==<span class="keyword">null</span>)</div><div class="line">					s=<span class="keyword">new</span> Single();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> s;</div><div class="line">	&#125;</div><div class="line">&#125;<span class="comment">//懒汉式用于延迟加载</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Single</span>//饿汉式（开发中常用）</span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Single s=<span class="keyword">new</span> Single();</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">return</span> s;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;基于Windows10-MarkdownPad2&quot;&gt;&lt;a href=&quot;#基于Windows10-MarkdownPad2&quot; class=&quot;headerlink&quot; title=&quot;基于Windows10+MarkdownPad2&quot;&gt;&lt;/a&gt;基于Windows10+MarkdownPad2&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;首先登陆官网下载：&lt;a href=&quot;http://markdownpad.com/&quot; title=&quot;MarkdownPad&quot;&gt;http://markdownpad.com/&lt;/a&gt;    选择windows系统&lt;/li&gt;
-&lt;/ul&gt;
+      &lt;blockquote&gt;
+&lt;p&gt;单例设计模式 懒汉式/饿汉式&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
-      <category term="Other" scheme="http://yoursite.com/categories/Other/"/>
+      <category term="JAVA" scheme="http://yoursite.com/categories/JAVA/"/>
     
     
-      <category term="Other" scheme="http://yoursite.com/tags/Other/"/>
+      <category term="JAVA" scheme="http://yoursite.com/tags/JAVA/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2016/10/30/hello-world/"/>
-    <id>http://yoursite.com/2016/10/30/hello-world/</id>
-    <published>2016-10-30T14:34:22.453Z</published>
+    <link href="http://yoursite.com/2017/05/20/hello-world/"/>
+    <id>http://yoursite.com/2017/05/20/hello-world/</id>
+    <published>2017-05-20T12:01:02.914Z</published>
     <updated>2016-11-01T06:28:31.940Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
