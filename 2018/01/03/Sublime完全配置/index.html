@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Sum up, Thinking, Knowledge management">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="T.Cage">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="sublime完全配置"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Sum up, Thinking, Knowledge management" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="T.Cage&#39;s Blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>sublime完全配置 - T.Cage&#39;s Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-code" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2018/01/03/Sublime完全配置/">
+                sublime完全配置
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-01-03</span>
+            
+            <a href="#disqus_thread" class="comments">留言</a>
+            
+                <span class="category">
+                    <a href="/categories/其他/">其他</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <blockquote>
+<p>本文主要记录个性化定制自己的代码编辑器，主要用于python，java简单代码的配置，以及使用sublime编辑latex</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="sublime完全配置"><a href="#sublime完全配置" class="headerlink" title="sublime完全配置"></a>sublime完全配置</h1><p>本文主要记录个性化定制自己的代码编辑器，主要用于python，java简单代码的配置</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>新版的注册码如下<br>sublime build 3143</p>
+<blockquote>
+<p>—– BEGIN LICENSE —–<br>TwitterInc<br>200 User License<br>EA7E-890007<br>1D77F72E 390CDD93 4DCBA022 FAF60790<br>61AA12C0 A37081C5 D0316412 4584D136<br>94D7F7D4 95BC8C1C 527DA828 560BB037<br>D1EDDD8C AE7B379F 50C9D69D B35179EF<br>2FE898C4 8E4277A8 555CE714 E1FB0E43<br>D5D52613 C3D12E98 BC49967F 7652EED2<br>9D2D2E61 67610860 6D338B72 5CF95C69<br>E36B85CC 84991F19 7575D828 470A92AB<br>—— END LICENSE ——</p>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><h3 id="Package-Control"><a href="#Package-Control" class="headerlink" title="Package Control"></a>Package Control</h3><p>通俗易懂地说，这个是你在完成安装SublimeText后必须安装的东西。你问为什么？因为有了这个特殊的“插件包”，你可以很容易地安装、升 级、删除，甚至非常方便地查看您已经安装在SublimeText中的包或插件的列表。它通过菜单和对应的行为使这些过程变得非常容易和有组织。<br><strong>安装</strong><br>新版本中直接点击菜单栏中的preferences-&gt; Package Control即可安装<br>快捷键 <code>Ctrl+Shift+P</code>呼出Package Control界面<br><img src="https://i.imgur.com/5YsYVXM.png" alt=""><br>以下介绍的插件都可以使用Package Control：install package来进行安装</p>
+</blockquote>
+<h3 id="AdvancedNewFile"><a href="#AdvancedNewFile" class="headerlink" title="AdvancedNewFile"></a>AdvancedNewFile</h3><p>当我们在 Sublime Text 编辑器里我们可以通过快捷键<code>ctrl+n</code>,来新建一个文件，然后<code>ctrl+s</code>进行弹出保存框，填写文件名进行保存。安装完成之后，运用快捷键<code>command+alt+n</code>(win: <code>ctrl+alt+n</code>)，Sublime Text底部会弹出输入框；我们只需在这个输入框里输入我们需要新建的文件名回车即可；需要注意的是这路径前面不可加 ‘/‘, 这会使得建立的路径成为用户目录，而非改项目目录）。默认情况下文件会存储在当前目录，如果当前没有目录，会存储在用户的家目录。<br><strong>配置</strong><br>使用AdvancedNewFile还有一个功能可以在新建文件根据后缀名，使用预先配置好的文件模板<br><em>配置方法</em><br>点击菜单栏中的</p>
+<pre><code>preferences-&gt;
+package setting -&gt; 
+AdvancedNewFile -&gt; 
+User-Setting
+</code></pre><p>输入需要配置的项，具体可参考Default-Setting<br>如下为我配置的Java和Python文件的模板<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    "file_templates": &#123;"java":"/**\n</div><div class="line">    *Creat By T.Cage\n</div><div class="line">    *\n</div><div class="line">    *\n</div><div class="line">    */\n</div><div class="line">    public class &#123;\n    </div><div class="line">    	public static void main(String[] args)&#123;\n  </div><div class="line">    	      System.out.println(\"Hello World!\");\n  </div><div class="line">    	        &#125;\n</div><div class="line">    	    &#125;",</div><div class="line">        "py":"#!/usr/bin/env python\n</div><div class="line">    # -*- coding: utf-8 -*-\n</div><div class="line"># @Author  : CageTian (cagetian@outlook.com)\n</div><div class="line">\n</div><div class="line">import os\n</div><div class="line">def method():\n</div><div class="line">\n</div><div class="line">    pass\n</div><div class="line">\n</div><div class="line">if __name__ == '__main__':\n</div><div class="line">    print(\"hello World\")\n    "&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="SublimeCodeIntel"><a href="#SublimeCodeIntel" class="headerlink" title="SublimeCodeIntel"></a>SublimeCodeIntel</h3><p>SublimeCodeIntel提供强大的代码提示功能，一定程度上弥补了与ide之间的差距<br><strong>配置</strong><br>点击菜单栏中的</p>
+<pre><code>Preferences -&gt; 
+Package Settings -&gt;
+SublimeCodeIntel -&gt; 
+User-Settings
+</code></pre><p>找到 codeintel_language_settings 项添加内容(如下为我配置anaconda3,Python)：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"codeintel_language_settings"</span>: &#123;</div><div class="line">        <span class="attr">"Python3"</span>: &#123;</div><div class="line">            <span class="attr">"python3"</span>: <span class="string">"C:/ProgramData/Anaconda3.5/python.exe"</span>,</div><div class="line">            <span class="attr">"codeintel_scan_extra_dir"</span>: [</div><div class="line">                <span class="string">"C:/ProgramData/Anaconda3.5/Lib"</span>,</div><div class="line">                <span class="string">"C:/ProgramData/Anaconda3.5/Lib/site-packages"</span></div><div class="line">            ],</div><div class="line">            <span class="attr">"codeintel_scan_files_in_project"</span>: <span class="literal">true</span>,</div><div class="line">            <span class="attr">"codeintel_selected_catalogs"</span>: []</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="SublimeREPL"><a href="#SublimeREPL" class="headerlink" title="SublimeREPL"></a>SublimeREPL</h3><p>这可能是对程序员很有用的插件。SublimeREPL 允许你在 Sublime Text 中运行各种语言（NodeJS ， Python，Ruby， Scala 和 Haskell 等等）</p>
+<h3 id="ConvertToUTF8"><a href="#ConvertToUTF8" class="headerlink" title="ConvertToUTF8"></a>ConvertToUTF8</h3><p> 支持 GBK, BIG5, EUC-KR, EUC-JP, Shift_JIS 等编码的插件,将不同的编码文件自动转换为utf-8编码</p>
+<h3 id="SideBarEnhancements"><a href="#SideBarEnhancements" class="headerlink" title="SideBarEnhancements"></a>SideBarEnhancements</h3><p>这个插件可以给SublimeText的边栏菜单带来扩充的功能，包括：在当前工程文件夹中新建文件，移动文件或文件夹，产生文件或文件夹的副本，在新窗口或浏览器中打开，刷新等。这只是概括地说，安装后探索它更多的功能吧。</p>
+<h3 id="LaTeXTools"><a href="#LaTeXTools" class="headerlink" title="LaTeXTools"></a>LaTeXTools</h3><p>用于LaTex写作的插件，颜控必备，具体配置下文会进行介绍。</p>
+<h2 id="其他配置"><a href="#其他配置" class="headerlink" title="其他配置"></a>其他配置</h2><h3 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h3><p>Preferences -&gt;Settings<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"default_encoding"</span>: <span class="string">"UTF-8"</span>,</div><div class="line">	<span class="attr">"draw_white_space"</span>: <span class="string">"all"</span>,</div><div class="line">	<span class="attr">"font_size"</span>: <span class="number">14</span>,</div><div class="line">	<span class="attr">"highlight_line"</span>: <span class="literal">true</span>,</div><div class="line">	<span class="attr">"ignored_packages"</span>:</div><div class="line">	[</div><div class="line">		<span class="string">"Vintage"</span></div><div class="line">	],</div><div class="line">	<span class="attr">"indent_to_bracket"</span>: <span class="literal">true</span>,</div><div class="line">	<span class="attr">"rulers"</span>:</div><div class="line">	[</div><div class="line">		<span class="number">80</span></div><div class="line">	],</div><div class="line">	<span class="attr">"save_on_focus_lost"</span>: <span class="literal">true</span>,</div><div class="line">	<span class="attr">"translate_tabs_to_spaces"</span>: <span class="literal">true</span>,</div><div class="line">	<span class="attr">"trim_automatic_white_space"</span>: <span class="literal">false</span>,</div><div class="line">	<span class="attr">"word_wrap"</span>: <span class="literal">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="python交互式环境配置"><a href="#python交互式环境配置" class="headerlink" title="python交互式环境配置"></a>python交互式环境配置</h3><p>sublime对Python的支持是极好的，在Python文件窗口下直接使用<code>Ctrl+p</code>便可以运行Python代码，但不足之处是不支持控制台的输入，安装SublimeREPL以配置交互式环境：</p>
+<ul>
+<li>点击preferences -&gt; Key Binding</li>
+<li>配置<code>F5</code>运行当前Python文件，<code>Ctrl+F5</code>进入调试<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">    &#123;</div><div class="line"><span class="attr">"keys"</span>: [</div><div class="line">  <span class="string">"f5"</span></div><div class="line">],</div><div class="line"><span class="attr">"caption"</span>: <span class="string">"SublimeREPL: Python - RUN current file"</span>,</div><div class="line"><span class="attr">"command"</span>: <span class="string">"run_existing_window_command"</span>,</div><div class="line"><span class="attr">"args"</span>: &#123;</div><div class="line">  <span class="attr">"id"</span>: <span class="string">"repl_python_run"</span>,</div><div class="line">  <span class="attr">"file"</span>: <span class="string">"config/Python/Main.sublime-menu"</span></div><div class="line">&#125;</div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line"><span class="attr">"keys"</span>: [</div><div class="line">  <span class="string">"ctrl+f5"</span></div><div class="line">],</div><div class="line"><span class="attr">"caption"</span>: <span class="string">"SublimeREPL: Python - PDB current file"</span>,</div><div class="line"><span class="attr">"command"</span>: <span class="string">"run_existing_window_command"</span>,</div><div class="line"><span class="attr">"args"</span>:</div><div class="line">&#123;</div><div class="line">    <span class="attr">"id"</span>: <span class="string">"repl_python_pdb"</span>,</div><div class="line">    <span class="attr">"file"</span>: <span class="string">"config/Python/Main.sublime-menu"</span></div><div class="line">&#125;</div><div class="line">  &#125;</div><div class="line">]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Java简单开发环境配置"><a href="#Java简单开发环境配置" class="headerlink" title="Java简单开发环境配置"></a>Java简单开发环境配置</h3><ul>
+<li>Preferences -&gt; Browse Packages</li>
+<li>在Packages文件夹下新建Java文件夹</li>
+<li><p>在Java文件夹下新建JavaC.sublime-build文件，内容如下</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"shell_cmd"</span>: <span class="string">"runJava.bat \"$file\""</span>,</div><div class="line">	<span class="attr">"file_regex"</span>: <span class="string">"^(...*?):([0-9]*):?([0-9]*)"</span>,</div><div class="line">	<span class="attr">"selector"</span>: <span class="string">"source.java"</span>,</div><div class="line">	<span class="attr">"encoding"</span>: <span class="string">"utf-8"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在javajdk安装目录的bin文件夹下新建runJava.bat文件,内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@ECHO OFF</div><div class="line">cd %~dp1</div><div class="line">ECHO Compiling %~nx1……</div><div class="line">IF EXIST %~n1.class (</div><div class="line">DEL %~n1.class</div><div class="line">)</div><div class="line">javac %~nx1</div><div class="line">IF EXIST %~n1.class (</div><div class="line">ECHO ———OUTPUT———</div><div class="line">java %~n1</div><div class="line">)</div></pre></td></tr></table></figure>
+</li>
+<li><p>新建java文件<code>Ctrl+B</code>运行</p>
+</li>
+</ul>
+<p><em>注：</em>java环境变量得配置正确</p>
+<h3 id="Latex写作环境的配置"><a href="#Latex写作环境的配置" class="headerlink" title="Latex写作环境的配置"></a>Latex写作环境的配置</h3><ul>
+<li>安装MiKTeX （Windows 平台下的 LaTeX 工具套件，包含了 TeX 以及相关的程序。下载地址：<a href="https://miktex.org/download" title="下载地址" target="_blank" rel="external">https://miktex.org/download</a>）</li>
+<li>配置LaTeXTools。<ul>
+<li>打开 Sublime Text，按下快捷键 <code>Ctrl+Shift+P</code>，调出 Package Control，搜索“LaTeXTools: Reconfigure and migrate settings”并回车即可。这一步实际上在User目录下创建了名为“LaTeXTools.sublime-settings”的配置文件。</li>
+<li>配置编译器。将前面的LaTeXTools.sublime-settings文件用Sublime Text 3打开，配置”texpath”选项，将MikTex的路径添加进去就可以了，如下图所示。<br><img src="https://i.imgur.com/2yRt6jG.png" alt=""></li>
+</ul>
+</li>
+<li><p>下载并配置SumatraPDF</p>
+<ul>
+<li>第一步：将 SumatraPDF 的主程序目录添加到环境变量PATH，这一步很重要，否则下一步会无法进行。</li>
+<li><p>第二步：打开命令提示符，执行以下命令：（将其中的安装路径替换成你实际的安装路径（配置反向搜索）</p>
+<blockquote>
+<p>SumatraPDF.exe -inverse-search “\”D:\Program Files (x86)\Sublime Text 3\sublime_text.exe\” \”%f:%l\””</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>使用进行到现在，理论上应该就已经配置好了。按下快捷键 Ctrl+B，Sublime就会自动调用 LaTeXTools 的 build 系统来进行编译，然后自动打开 SumatraPDF 进行预览。之后每次修改后只要 Ctrl+B 一下，SumatraPDF 里的内容就会自动更新。同时在SumatraPDF 中双击相应的内容，会调到Sublime中对应的位置。</li>
+</ul>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/ide/">#ide</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    This blog was developed by <a href="https://github.com/cagetian">T.Cage</a>. The source code is available on my Github. Coding Changes The World.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2018/01/03/Sublime完全配置/">sublime完全配置</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/12/10/Java字符串处理与正则表达式/">Java正则表达式及字符串处理详解</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/12/05/Java日期时间处理/">Java中时间日期的操作</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/11/26/机器学习缺失值处理方法汇总/">机器学习缺失值处理方法汇总</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/数据挖掘/">数据挖掘</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/其他/">其他</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Other/">Other</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/JAVA/">JAVA</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/CageTian">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://twitter.com/?lang=en">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.instagram.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-instagram"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://plus.google.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-google-plus"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:cagetian@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @China. All right reserved | Powered & Hexo <a href="http://www.tiankaiqi.site/">T.Cage</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
